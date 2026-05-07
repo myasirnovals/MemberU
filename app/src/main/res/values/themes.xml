@@ -41,9 +41,12 @@
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
 
         <!-- Shape: rounded corner untuk semua komponen UI -->
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MemberU.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MemberU.MediumComponent</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MemberU.LargeComponent</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MemberU.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MemberU.MediumComponent
+        </item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MemberU.LargeComponent
+        </item>
 
     </style>
 
@@ -59,22 +62,19 @@
     </style>
 
     <!-- Shape: corner 8dp - tombol, chip, input kecil -->
-    <style name="ShapeAppearance.MemberU.SmallComponent"
-        parent="ShapeAppearance.Material3.SmallComponent">
+    <style name="ShapeAppearance.MemberU.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
 
     <!-- Shape: corner 12dp - card sedang, dialog -->
-    <style name="ShapeAppearance.MemberU.MediumComponent"
-        parent="ShapeAppearance.Material3.MediumComponent">
+    <style name="ShapeAppearance.MemberU.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>
 
     <!-- Shape: corner 16dp - member card, bottom sheet -->
-    <style name="ShapeAppearance.MemberU.LargeComponent"
-        parent="ShapeAppearance.Material3.LargeComponent">
+    <style name="ShapeAppearance.MemberU.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
@@ -132,8 +132,7 @@
     </style>
 
     <!-- Bottom nav indicator: background aktif rounded -->
-    <style name="Style.MemberU.BottomNavIndicator"
-        parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+    <style name="Style.MemberU.BottomNavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/primary_container</item>
         <item name="shapeAppearance">@style/ShapeAppearance.MemberU.SmallComponent</item>
     </style>
@@ -168,7 +167,8 @@
     <style name="Style.MemberU.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorSurface">@color/surface_light</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MemberU.MediumComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MemberU.MediumComponent
+        </item>
     </style>
 
     <!-- Tier badge Gold: teks coklat keemasan -->
