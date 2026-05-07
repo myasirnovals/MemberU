@@ -1,13 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Warna dasar -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primary">#673AB7</color>
-    <color name="secondary">#9C27B0</color>
-    <color name="light">#f5f5f5</color>
-    <color name="text_primary">#000000</color>
-    <color name="text_secondary">#999999</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Primary: Indigo - tombol utama, highlight, bottom nav aktif -->
+    <color name="primary">#5C6BC0</color>
+    <color name="primary_dark">#3949AB</color>
+    <color name="primary_light">#7986CB</color>
+    <color name="primary_container">#E8EAF6</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_primary_container">#1A237E</color>
+
+    <!-- Secondary: Cyan - banner promo, aksen, badge tier -->
+    <color name="secondary">#26C6DA</color>
+    <color name="secondary_dark">#00ACC1</color>
+    <color name="secondary_light">#80DEEA</color>
+    <color name="secondary_container">#E0F7FA</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="on_secondary_container">#006064</color>
+
+    <!-- Tertiary: Ungu - aksen tambahan card design -->
+    <color name="tertiary">#7E57C2</color>
+    <color name="tertiary_dark">#512DA8</color>
+    <color name="tertiary_light">#B39DDB</color>
+    <color name="tertiary_container">#EDE7F6</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="on_tertiary_container">#311B92</color>
+
+    <!-- Background Light Mode - background utama halaman -->
+    <color name="background_light">#F5F5F7</color>
+    <color name="on_background_light">#1C1B1F</color>
+
+    <!-- Background Dark Mode - background utama halaman gelap -->
+    <color name="background_dark">#121212</color>
+    <color name="on_background_dark">#E6E1E5</color>
+
+    <!-- Surface Light - Card, BottomSheet, Dialog light mode -->
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_variant_light">#E8EAF6</color>
+    <color name="on_surface_light">#1C1B1F</color>
+    <color name="on_surface_variant_light">#49454F</color>
+
+    <!-- Surface Dark - Card, BottomSheet, Dialog dark mode -->
+    <color name="surface_dark">#1E1E1E</color>
+    <color name="surface_variant_dark">#2C2C3E</color>
+    <color name="on_surface_dark">#E6E1E5</color>
+    <color name="on_surface_variant_dark">#CAC4D0</color>
+
+    <!-- Error Light - validasi form, error state light mode -->
+    <color name="error">#B00020</color>
+    <color name="error_container">#FDECEA</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="on_error_container">#410002</color>
+
+    <!-- Error Dark - validasi form, error state dark mode -->
+    <color name="error_dark">#CF6679</color>
+    <color name="error_container_dark">#93000A</color>
+    <color name="on_error_dark">#690020</color>
+    <color name="on_error_container_dark">#FFDAD6</color>
+
+    <!-- Outline - border input field, divider, card border -->
+    <color name="outline">#C4C4C4</color>
+    <color name="outline_variant">#E0E0E0</color>
+    <color name="outline_dark">#938F99</color>
+    <color name="outline_variant_dark">#49454F</color>
+
+    <!-- Text Light Mode -->
+    <color name="text_primary">#1C1B1F</color>
+    <color name="text_secondary">#49454F</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="text_disabled">#BDBDBD</color>
+
+    <!-- Text Dark Mode -->
+    <color name="text_primary_dark">#E6E1E5</color>
+    <color name="text_secondary_dark">#CAC4D0</color>
+    <color name="text_hint_dark">#938F99</color>
+    <color name="text_disabled_dark">#616161</color>
+
+    <!-- Status: success, warning, info -->
     <color name="success">#4CAF50</color>
+    <color name="success_container">#E8F5E9</color>
+    <color name="on_success">#FFFFFF</color>
     <color name="warning">#FFC107</color>
-    <color name="error">#F44336</color>
+    <color name="warning_container">#FFF8E1</color>
+    <color name="on_warning">#1C1B1F</color>
+    <color name="info">#2196F3</color>
+    <color name="info_container">#E3F2FD</color>
+    <color name="on_info">#FFFFFF</color>
+
+    <!-- Tier badge Gold - background dan teks -->
+    <color name="tier_gold_bg">#FFF8E1</color>
+    <color name="tier_gold_stroke">#FFD54F</color>
+    <color name="tier_gold_text">#7B5800</color>
+    <color name="tier_gold_bg_dark">#3E2E00</color>
+    <color name="tier_gold_text_dark">#FFD54F</color>
+
+    <!-- Tier badge Silver - background dan teks -->
+    <color name="tier_silver_bg">#ECEFF1</color>
+    <color name="tier_silver_stroke">#90A4AE</color>
+    <color name="tier_silver_text">#455A64</color>
+    <color name="tier_silver_bg_dark">#263238</color>
+    <color name="tier_silver_text_dark">#B0BEC5</color>
+
+    <!-- Tier badge Platinum - background dan teks -->
+    <color name="tier_platinum_bg">#F3E5F5</color>
+    <color name="tier_platinum_stroke">#CE93D8</color>
+    <color name="tier_platinum_text">#37474F</color>
+    <color name="tier_platinum_bg_dark">#2D1B33</color>
+    <color name="tier_platinum_text_dark">#CE93D8</color>
+
+    <!-- Tier badge Bronze - background dan teks -->
+    <color name="tier_bronze_bg">#FBE9E7</color>
+    <color name="tier_bronze_stroke">#FFAB91</color>
+    <color name="tier_bronze_text">#BF360C</color>
+    <color name="tier_bronze_bg_dark">#3E1A0E</color>
+    <color name="tier_bronze_text_dark">#FFAB91</color>
+
+    <!-- Kategori Gym - warna icon dan chip -->
+    <color name="category_gym">#4CAF50</color>
+    <color name="category_gym_container">#E8F5E9</color>
+
+    <!-- Kategori Barbershop - warna icon dan chip -->
+    <color name="category_barbershop">#2196F3</color>
+    <color name="category_barbershop_container">#E3F2FD</color>
+
+    <!-- Kategori Laundry - warna icon dan chip -->
+    <color name="category_laundry">#9C27B0</color>
+    <color name="category_laundry_container">#F3E5F5</color>
+
+    <!-- Kategori lainnya - warna default -->
+    <color name="category_other">#FF9800</color>
+    <color name="category_other_container">#FFF3E0</color>
+
+    <!-- Bottom navigation Light - aktif primary, nonaktif abu -->
+    <color name="bottom_nav_active">#5C6BC0</color>
+    <color name="bottom_nav_inactive">#9E9E9E</color>
+
+    <!-- Bottom navigation Dark - aktif primary muda, nonaktif abu redup -->
+    <color name="bottom_nav_active_dark">#BB86FC</color>
+    <color name="bottom_nav_inactive_dark">#938F99</color>
+
+    <!-- Chip filter aktif dan nonaktif Light Mode -->
+    <color name="chip_active_bg">#E8EAF6</color>
+    <color name="chip_active_text">#5C6BC0</color>
+    <color name="chip_inactive_bg">#FFFFFF</color>
+    <color name="chip_inactive_text">#49454F</color>
+
+    <!-- Chip filter aktif dan nonaktif Dark Mode -->
+    <color name="chip_active_bg_dark">#4F378B</color>
+    <color name="chip_active_text_dark">#EADDFF</color>
+    <color name="chip_inactive_bg_dark">#2C2C2C</color>
+    <color name="chip_inactive_text_dark">#CAC4D0</color>
+
+    <!-- Card member Light Mode -->
+    <color name="card_bg_light">#FFFFFF</color>
+    <color name="card_stroke_light">#E8EAF6</color>
+
+    <!-- Card member Dark Mode -->
+    <color name="card_bg_dark">#2C2C2C</color>
+    <color name="card_stroke_dark">#3A3A4A</color>
+
+    <!-- QR Code container - selalu putih agar mudah discan -->
+    <color name="qr_background">#FFFFFF</color>
+    <color name="qr_foreground">#000000</color>
+
+    <!-- Divider dan separator -->
+    <color name="divider_light">#E0E0E0</color>
+    <color name="divider_dark">#3A3A3A</color>
+
+    <!-- Ripple effect -->
+    <color name="ripple_light">#1A5C6BC0</color>
+    <color name="ripple_dark">#1ABB86FC</color>
+
+    <!-- Scrim overlay - digunakan untuk dialog backdrop -->
+    <color name="scrim">#52000000</color>
+
 </resources>
