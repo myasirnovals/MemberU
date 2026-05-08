@@ -201,16 +201,35 @@
 
             </HorizontalScrollView>
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="+ Tambah Member Baru"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:backgroundTint="#4CAF50"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="24dp"/>
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_button_dashed"
+                android:gravity="center_vertical"
+                android:paddingStart="24dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textColor="#64B5F6"
+                    android:textSize="24sp"
+                    android:layout_marginEnd="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tambah Member Baru"
+                    android:textColor="#64B5F6"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
