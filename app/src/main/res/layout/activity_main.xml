@@ -23,7 +23,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="#3F51B5"
+            app:cardBackgroundColor="#6444f3"
             app:cardElevation="0dp">
 
             <TextView
@@ -45,13 +45,13 @@
             android:background="@drawable/bg_search_rounded"
             android:hint="Cari member..."
             android:textSize="14sp"
-            android:textColorHint="#4D4D4D"
-            android:textColor="#333333"
+            android:textColorHint="#afb6c5"
+            android:textColor="#afb6c5"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="8dp"
-            android:drawableTint="#8A8A8A"
+            android:drawableTint="#afb6c5"
             android:inputType="text" />
 
         <androidx.cardview.widget.CardView
@@ -75,7 +75,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/header_container"
         android:layout_above="@id/bottom_navigation"
-        android:background="#E9E4F8">
+        android:background="#f1f4fb">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -166,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:text="Semua"
                         android:textAllCaps="false"
-                        android:backgroundTint="#3F51B5"
+                        android:backgroundTint="#4361ee"
                         android:textColor="@android:color/white"
                         android:layout_marginEnd="8dp"/>
 
@@ -216,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+"
-                    android:textColor="#64B5F6"
+                    android:textColor="#4361ee"
                     android:textSize="24sp"
                     android:layout_marginEnd="12dp"/>
 
@@ -224,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tambah Member Baru"
-                    android:textColor="#64B5F6"
+                    android:textColor="#4361ee"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textAllCaps="false" />
