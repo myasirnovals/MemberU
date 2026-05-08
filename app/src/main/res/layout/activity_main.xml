@@ -85,70 +85,75 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginTop="24dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@android:color/white">
+                android:layout_height="190dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true">
 
-                <RelativeLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/white">
-
-                    <TextView
-                        android:id="@+id/tv_banner_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="20dp"
-                        android:text="Dapatkan Diskon 50%"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_banner_title"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="4dp"
-                        android:text="Promo member baru! Daftar member Gym EVO sekarang dan dapatkan diskon 30% untuk bulan pertama."
-                        android:textColor="#000000" />
+                    android:background="@drawable/bg_promo_gradient"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:orientation="horizontal">
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <Button
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="8dp"
-                            android:background="@drawable/bg_button_secondary"
-                            android:backgroundTint="@null"
-                            android:backgroundTintMode="src_in"
-                            android:text="Abaikan"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="12sp"
-                            app:rippleColor="#2F2F2F" />
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_badge_promo"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:text="HOT DEAL"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
-                        <Button
+                        <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_button_primary"
-                            android:backgroundTint="@null"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Promo Member Baru"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Diskon 30% untuk bulan pertama"
+                            android:textColor="#EAF0FF"
+                            android:textSize="12sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/bg_button_white"
                             android:text="Lihat Promo"
                             android:textAllCaps="false"
-                            android:textColor="#FFFFFF"
+                            android:textColor="#4361EE"
                             android:textSize="12sp" />
                     </LinearLayout>
-                </RelativeLayout>
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_discount"
+                        app:tint="#FFFFFF" />
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
+
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
