@@ -20,14 +20,13 @@ import org.butterflygroup.memberu.controllers.MainController;
 public class HomeActivity extends AppCompatActivity implements MainView {
     private MainController controller;
 
-    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(
-            new ScanContract(),
-            result -> {
-                if (result.getContents() != null) {
-                    showMessage("Hasil Scan: " + result.getContents());
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(), result -> {
+                if(result.getContents() == null) {
+                    Toast.makeText(this, "Scan dibatalkan", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Berhasil! Isi QR: " + result.getContents(), Toast.LENGTH_LONG).show();
                 }
-            }
-    );
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
