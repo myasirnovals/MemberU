@@ -9,12 +9,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.activity.result.ActivityResultLauncher;
+
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import org.butterflygroup.memberu.R;
 import org.butterflygroup.memberu.controllers.MainController;
 
 public class HomeActivity extends AppCompatActivity implements MainView {
     private MainController controller;
+
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(
+            new ScanContract(),
+            result -> {
+                if (result.getContents() != null) {
+                    showMessage("Hasil Scan: " + result.getContents());
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +60,22 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         View tombolQris = findViewById(R.id.btn_qris);
 
         if (tombolQris != null) {
-            tombolQris.setOnClickListener(v -> controller.handleQrisClicked());
+            tombolQris.setOnClickListener(v -> bukaKameraScanner());
         }
     }
 
     @Override
     public void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void bukaKameraScanner() {
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(false);
+        options.setCaptureActivity(CustomScannerActivity.class);
+
+        barcodeLauncher.launch(options);
     }
 }
