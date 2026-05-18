@@ -191,21 +191,4 @@
     <color name="chip_background_color_dark">#2C2C2C</color>
     <color name="chip_text_color_dark">#CAC4D0</color>
 
-    <style name="Style.MemberU.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
-        <item name="itemActiveIndicatorStyle">@style/Style.MemberU.BottomNavIndicator</item>
-        <item name="itemTextColor">@color/bottom_nav_color_dark</item>
-        <item name="itemIconTint">@color/bottom_nav_color_dark</item>
-        <item name="android:background">@color/surface_dark</item>
-        <item name="elevation">8dp</item>
-    </style>
-
-    <style name="Style.MemberU.FilterChip" parent="Widget.Material3.Chip.Filter">
-        <item name="chipCornerRadius">20dp</item>
-        <item name="chipBackgroundColor">@color/chip_background_color_dark</item>
-        <item name="android:textColor">@color/chip_text_color_dark</item>
-        <item name="chipStrokeColor">@color/bottom_nav_active_dark</item>
-        <item name="chipStrokeWidth">1dp</item>
-        <item name="checkedIconVisible">false</item>
-    </style>
-
 </resources>
