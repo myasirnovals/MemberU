@@ -50,14 +50,6 @@
     <!-- Main app theme dark -->
     <style name="Theme.MemberU" parent="Base.Theme.MemberU" />
 
-    <!-- Splash screen theme dark - background gelap -->
-    <style name="Theme.MemberU.SplashScreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/surface_dark</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="windowSplashScreenBrandingImage">@drawable/ic_launcher_foreground</item>
-        <item name="postSplashScreenTheme">@style/Theme.MemberU</item>
-    </style>
-
     <!-- Shape: corner 8dp - tombol, chip, input kecil -->
     <style name="ShapeAppearance.MemberU.SmallComponent"
         parent="ShapeAppearance.Material3.SmallComponent">
@@ -242,5 +234,8 @@
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.08</item>
     </style>
+
+    <style name="Style.MemberU" parent="" />
+    <style name="Style.MemberU.TierBadge" parent="" />
 
 </resources>
