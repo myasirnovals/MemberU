@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">MemberU</string>
+
+    <!-- Detail Card Screen -->
+    <string name="detail_card_member_name">Gym Fitness Cimahi</string>
+    <string name="detail_card_member_tier">Member Platinum</string>
+    <string name="detail_card_member_id">ID Member: 000128771</string>
+    <string name="detail_card_member_expiry">Aktif sampai 31 Des 2026</string>
+    <string name="detail_card_member_notes">Tunjukkan kode di bawah kepada kasir. Jika gerai tidak menyediakan QR code atau barcode, kode ini membantu proses transaksi lebih cepat.</string>
+    <string name="detail_card_btn_qr_code">QR Code</string>
+    <string name="detail_card_btn_barcode">Barcode</string>
+    <string name="detail_card_footer_hint">Gunakan QR code atau barcode sesuai kebutuhan gerai</string>
+    <string name="detail_card_image_content_desc">card image</string>
+    <string name="detail_card_qr_code_content_desc">QR code transaksi</string>
+    <string name="detail_card_barcode_content_desc">barcode transaksi</string>
 </resources>
