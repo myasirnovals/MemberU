@@ -66,6 +66,14 @@ public class HomeActivity extends AppCompatActivity implements MainView {
             tombolQris.setOnClickListener(v -> bukaKameraScanner());
         }
 
+        View tombolTambahMember = findViewById(R.id.btn_add_member);
+        if (tombolTambahMember != null) {
+            tombolTambahMember.setOnClickListener(v -> {
+                android.content.Intent intent = new android.content.Intent(HomeActivity.this, AddMemberActivity.class);
+                startActivity(intent);
+            });
+        }
+
         rvMembers = findViewById(R.id.rv_members);
         rvMembers.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
 

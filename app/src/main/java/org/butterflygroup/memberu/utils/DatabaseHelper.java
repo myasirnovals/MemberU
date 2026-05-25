@@ -97,4 +97,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "JOIN " + TABLE_CATEGORIES + " c ON m.category_id = c.id";
         return db.rawQuery(query, null);
     }
+
+    public boolean insertMemberCard(int userId, int categoryId, String merchantName, String memberNumber, String tier) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("user_id", userId);
+        values.put("category_id", categoryId);
+        values.put("merchant_name", merchantName);
+        values.put("member_number", memberNumber);
+        values.put("tier", tier);
+        values.put("qr_payload", memberNumber);
+
+        long result = db.insert(TABLE_MEMBER_CARDS, null, values);
+
+        return result != -1;
+    }
 }
