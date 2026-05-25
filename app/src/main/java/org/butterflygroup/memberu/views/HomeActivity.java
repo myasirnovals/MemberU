@@ -21,12 +21,17 @@ public class HomeActivity extends AppCompatActivity implements MainView {
     private MainController controller;
 
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(), result -> {
-                if(result.getContents() == null) {
-                    Toast.makeText(this, "Scan dibatalkan", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Berhasil! Isi QR: " + result.getContents(), Toast.LENGTH_LONG).show();
-                }
-            });
+        if(result.getContents() == null) {
+            Toast.makeText(this, "Scan dibatalkan", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Berhasil! Isi QR: " + result.getContents(), Toast.LENGTH_LONG).show();
+        }
+    });
+
+    private androidx.recyclerview.widget.RecyclerView rvMembers;
+    private org.butterflygroup.memberu.adapters.MemberAdapter memberAdapter;
+    private java.util.List<org.butterflygroup.memberu.models.MemberCard> memberList;
+    private org.butterflygroup.memberu.utils.DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +62,17 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         controller = new MainController(this);
 
         View tombolQris = findViewById(R.id.btn_qris);
-
         if (tombolQris != null) {
             tombolQris.setOnClickListener(v -> bukaKameraScanner());
         }
+
+        rvMembers = findViewById(R.id.rv_members);
+        rvMembers.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
+
+        dbHelper = new org.butterflygroup.memberu.utils.DatabaseHelper(this);
+        memberList = new java.util.ArrayList<>();
+
+        loadDataFromDatabase();
     }
 
     @Override
@@ -76,5 +88,31 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         options.setCaptureActivity(CustomScannerActivity.class);
 
         barcodeLauncher.launch(options);
+    }
+
+    private void loadDataFromDatabase() {
+        memberList.clear();
+
+        android.database.Cursor cursor = dbHelper.getAllMemberCards();
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                int userId = cursor.getInt(cursor.getColumnIndexOrThrow("user_id"));
+                int categoryId = cursor.getInt(cursor.getColumnIndexOrThrow("category_id"));
+                String categoryName = cursor.getString(cursor.getColumnIndexOrThrow("category_name"));
+                String merchantName = cursor.getString(cursor.getColumnIndexOrThrow("merchant_name"));
+                String memberNumber = cursor.getString(cursor.getColumnIndexOrThrow("member_number"));
+                String tier = cursor.getString(cursor.getColumnIndexOrThrow("tier"));
+
+                memberList.add(new org.butterflygroup.memberu.models.MemberCard(
+                        id, userId, categoryId, categoryName, merchantName, memberNumber, tier, ""
+                ));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        memberAdapter = new org.butterflygroup.memberu.adapters.MemberAdapter(memberList);
+        rvMembers.setAdapter(memberAdapter);
     }
 }
