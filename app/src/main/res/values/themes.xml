@@ -236,6 +236,7 @@
     </style>
 
     <style name="Style.MemberU" parent="" />
+
     <style name="Style.MemberU.TierBadge" parent="" />
 
 </resources>
