@@ -63,14 +63,29 @@ public class HomeActivity extends AppCompatActivity implements MainView {
 
         View tombolQris = findViewById(R.id.btn_qris);
         if (tombolQris != null) {
-            tombolQris.setOnClickListener(v -> bukaKameraScanner());
+            tombolQris.setOnClickListener(v -> {
+                android.view.animation.Animation animBounce =
+                        android.view.animation.AnimationUtils.loadAnimation(HomeActivity.this, R.anim.anim_bounce);
+                v.startAnimation(animBounce);
+
+                v.postDelayed(() -> {
+                    bukaKameraScanner();
+                }, 150);
+            });
         }
 
         View tombolTambahMember = findViewById(R.id.btn_add_member);
         if (tombolTambahMember != null) {
             tombolTambahMember.setOnClickListener(v -> {
-                android.content.Intent intent = new android.content.Intent(HomeActivity.this, AddMemberActivity.class);
-                startActivity(intent);
+                android.view.animation.Animation animClick =
+                        android.view.animation.AnimationUtils.loadAnimation(HomeActivity.this, R.anim.anim_click);
+
+                v.startAnimation(animClick);
+
+                v.postDelayed(() -> {
+                    android.content.Intent intent = new android.content.Intent(HomeActivity.this, AddMemberActivity.class);
+                    startActivity(intent);
+                }, 150);
             });
         }
 
@@ -81,6 +96,14 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         memberList = new java.util.ArrayList<>();
 
         loadDataFromDatabase();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (dbHelper != null) {
+            loadDataFromDatabase();
+        }
     }
 
     @Override
