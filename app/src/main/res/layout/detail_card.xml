@@ -24,7 +24,18 @@
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:navigationIcon="@drawable/ic_back_left_arrow"
             app:title="@string/detail_card_member_name"
-            app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge" />
+            app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge">
+
+            <ImageButton
+                android:id="@+id/btnSync"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end|center_vertical"
+                android:background="@android:color/transparent"
+                android:padding="0dp"
+                android:src="@drawable/baseline_cloud_sync_24" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -244,10 +255,26 @@
                 android:text="@string/detail_card_footer_hint"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/llCodeToggle" />
+
+            <Button
+                android:id="@+id/btnDeleteMember"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#D32F2F"
+                android:text="@string/delete_caps"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvFooterHint" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
