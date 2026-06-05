@@ -1,7 +1,10 @@
-- [ ] Buat plan perubahan untuk mengubah tombol QR/Barcode + warna kode QR/Barcode
-- [ ] Cek implementasi generate QR/barcode di project (jika ada)
-- [ ] Update layout: ubah style tombol agar berwarna dan aktif/nonaktif sesuai request
-- [ ] Update gambar/foreground QR & barcode (mis. ubah drawable atau background/foreground container)
-- [ ] Update DetailCardActivity logic (toggle button state) agar mengikuti warna baru
-- [ ] Build & jalankan / minimal compile untuk memastikan tidak ada error
+# TODO - Implementasi Splash Sync Detail Card
+
+- [ ] Tambahkan Activity baru `SyncDetailActivity` untuk menampilkan splash/loading saat tombol Sync ditekan
+- [ ] Buat layout `activity_sync_detail.xml` berisi animasi loading + teks "Memuat detail kartu"
+- [ ] Tambahkan string ke `app/src/main/res/values/strings.xml`
+- [ ] Daftarkan `SyncDetailActivity` di `AndroidManifest.xml`
+- [ ] Ubah `DetailCardActivity`: tombol Sync berpindah ke `SyncDetailActivity` dan **finish** DetailCardActivity lama
+- [ ] Pastikan setelah loading, `SyncDetailActivity` membuka kembali `DetailCardActivity` dengan `memberCardId`
+- [ ] Build & test: tap Sync → splash tampil → detail ter-load, Back tidak menampilkan layar duplikat
 

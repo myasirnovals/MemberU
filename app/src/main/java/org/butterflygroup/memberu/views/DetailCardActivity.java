@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -31,6 +33,11 @@ public class DetailCardActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     private Cursor currentCursor;
+
+    private int memberCardId = -1;
+
+    private ImageButton btnSync;
+
 
     private TextView tvMemberName;
     private TextView tvMemberTier;
@@ -66,6 +73,9 @@ public class DetailCardActivity extends AppCompatActivity {
         btnBarcodeTab = findViewById(R.id.btnBarcodeTab);
         llCodeToggle = findViewById(R.id.llCodeToggle);
 
+        btnSync = findViewById(R.id.btnSync);
+
+
         setupCodeToggle();
 
 
@@ -77,7 +87,7 @@ public class DetailCardActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        int memberCardId = getIntent().getIntExtra(EXTRA_MEMBER_CARD_ID, -1);
+        memberCardId = getIntent().getIntExtra(EXTRA_MEMBER_CARD_ID, -1);
         if (memberCardId == -1) {
             // bila tidak ada id, kembali
             finish();
@@ -86,7 +96,22 @@ public class DetailCardActivity extends AppCompatActivity {
 
         loadDetailFromDatabase(memberCardId);
 
+        btnSync.setOnClickListener(v -> {
+            if (memberCardId != -1) {
+                Intent intent = new Intent(DetailCardActivity.this, SyncDetailActivity.class);
+                intent.putExtra(EXTRA_MEMBER_CARD_ID, memberCardId);
+                startActivity(intent);
+
+                // finish detail lama agar tidak muncul duplikat + mencegah potensi memory leak
+                safeCloseCursor();
+                finish();
+                overridePendingTransition(R.anim.anim_click, R.anim.anim_click);
+            }
+        });
+
+
         // ganti toolbar title agar lebih sesuai
+
         if (tvMemberName.getText() != null && !tvMemberName.getText().toString().trim().isEmpty()) {
             toolbar.setTitle(tvMemberName.getText().toString().trim());
         }

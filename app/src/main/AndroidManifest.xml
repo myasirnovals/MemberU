@@ -39,6 +39,9 @@
         <activity
             android:name=".views.DetailCardActivity"
             android:exported="false" />
+        <activity
+            android:name=".views.SyncDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
