@@ -35,6 +35,10 @@
         <activity
             android:name=".views.HomeActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".views.DetailCardActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

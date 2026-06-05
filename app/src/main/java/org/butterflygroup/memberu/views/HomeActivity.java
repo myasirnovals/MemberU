@@ -112,6 +112,7 @@ public class HomeActivity extends AppCompatActivity implements MainView {
     }
 
     private void bukaKameraScanner() {
+
         ScanOptions options = new ScanOptions();
         options.setPrompt("");
         options.setBeepEnabled(true);
@@ -143,7 +144,12 @@ public class HomeActivity extends AppCompatActivity implements MainView {
             cursor.close();
         }
 
-        memberAdapter = new org.butterflygroup.memberu.adapters.MemberAdapter(memberList);
+        memberAdapter = new org.butterflygroup.memberu.adapters.MemberAdapter(memberList, card -> {
+            android.content.Intent intent = new android.content.Intent(HomeActivity.this, DetailCardActivity.class);
+            intent.putExtra(org.butterflygroup.memberu.views.DetailCardActivity.EXTRA_MEMBER_CARD_ID, card.getId());
+            startActivity(intent);
+            overridePendingTransition(R.anim.anim_click, R.anim.anim_click);
+        });
         rvMembers.setAdapter(memberAdapter);
     }
 }
