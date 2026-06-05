@@ -224,9 +224,9 @@
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:background="?attr/colorPrimary"
+                    android:background="@drawable/bg_qr_tab_active"
                     android:text="@string/detail_card_btn_qr_code"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/on_secondary_container"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -236,7 +236,7 @@
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/bg_barcode_tab_inactive"
                     android:text="@string/detail_card_btn_barcode"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     android:textSize="14sp"

@@ -1,5 +1,7 @@
-- [ ] Add sync button (32x32dp) to corner kanan dalam app bar @+id/appBarLayoutDetailCard in detail_card.xml
-- [ ] Ensure it is positioned using MaterialToolbar end icon area or overlay within AppBarLayout
-- [ ] Use appropriate icon (existing drawable or vector) and add contentDescription
-- [ ] Build/verify layout compiles (optional: run gradle test/build)
+- [ ] Buat plan perubahan untuk mengubah tombol QR/Barcode + warna kode QR/Barcode
+- [ ] Cek implementasi generate QR/barcode di project (jika ada)
+- [ ] Update layout: ubah style tombol agar berwarna dan aktif/nonaktif sesuai request
+- [ ] Update gambar/foreground QR & barcode (mis. ubah drawable atau background/foreground container)
+- [ ] Update DetailCardActivity logic (toggle button state) agar mengikuti warna baru
+- [ ] Build & jalankan / minimal compile untuk memastikan tidak ada error
 
