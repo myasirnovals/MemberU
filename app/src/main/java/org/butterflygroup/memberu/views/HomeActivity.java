@@ -207,9 +207,16 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         }
     }
 
-    // ══════════════════════════════════════════════════════════════════════════
-    // DATA & FILTER
-    // ══════════════════════════════════════════════════════════════════════════
+    private void bukaKameraScanner() {
+
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(false);
+        options.setCaptureActivity(CustomScannerActivity.class);
+
+        barcodeLauncher.launch(options);
+    }
 
     private void loadDataFromDatabase() {
         memberList.clear();
@@ -231,48 +238,12 @@ public class HomeActivity extends AppCompatActivity implements MainView {
             cursor.close();
         }
 
-        applyFilter();
-    }
-
-    private void applyFilter() {
-        filteredList.clear();
-
-        for (MemberCard card : memberList) {
-            boolean cocokKategori = activeCategory.equalsIgnoreCase("Semua")
-                    || card.getCategoryName().equalsIgnoreCase(activeCategory);
-
-            boolean cocokSearch = searchQuery.isEmpty()
-                    || card.getMerchantName().toLowerCase().contains(searchQuery)
-                    || card.getMemberNumber().toLowerCase().contains(searchQuery);
-
-            if (cocokKategori && cocokSearch) {
-                filteredList.add(card);
-            }
-        }
-
-        memberAdapter = new MemberAdapter(new ArrayList<>(filteredList));
+        memberAdapter = new org.butterflygroup.memberu.adapters.MemberAdapter(memberList, card -> {
+            android.content.Intent intent = new android.content.Intent(HomeActivity.this, DetailCardActivity.class);
+            intent.putExtra(org.butterflygroup.memberu.views.DetailCardActivity.EXTRA_MEMBER_CARD_ID, card.getId());
+            startActivity(intent);
+            overridePendingTransition(R.anim.anim_click, R.anim.anim_click);
+        });
         rvMembers.setAdapter(memberAdapter);
-    }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // SCANNER
-    // ══════════════════════════════════════════════════════════════════════════
-
-    private void bukaKameraScanner() {
-        ScanOptions options = new ScanOptions();
-        options.setPrompt("");
-        options.setBeepEnabled(true);
-        options.setOrientationLocked(false);
-        options.setCaptureActivity(CustomScannerActivity.class);
-        barcodeLauncher.launch(options);
-    }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // INTERFACE MainView
-    // ══════════════════════════════════════════════════════════════════════════
-
-    @Override
-    public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

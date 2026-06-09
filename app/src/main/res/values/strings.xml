@@ -13,4 +13,9 @@
     <string name="detail_card_image_content_desc">card image</string>
     <string name="detail_card_qr_code_content_desc">QR code transaksi</string>
     <string name="detail_card_barcode_content_desc">barcode transaksi</string>
+    <string name="delete_caps">HAPUS</string>
+
+    <!-- Sync Detail Loading -->
+    <string name="sync_detail_loading_text">Memuat detail kartu</string>
 </resources>
+

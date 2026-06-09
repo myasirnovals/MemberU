@@ -14,11 +14,18 @@ import org.butterflygroup.memberu.models.MemberCard;
 import java.util.List;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberViewHolder> {
-    private List<MemberCard> memberList;
-
-    public MemberAdapter(List<MemberCard> memberList) {
-        this.memberList = memberList;
+    public interface OnMemberClickListener {
+        void onMemberClick(MemberCard card);
     }
+
+    private List<MemberCard> memberList;
+    private final OnMemberClickListener listener;
+
+    public MemberAdapter(List<MemberCard> memberList, OnMemberClickListener listener) {
+        this.memberList = memberList;
+        this.listener = listener;
+    }
+
 
     @NonNull
     @Override
@@ -34,7 +41,14 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MemberView
         holder.tvMerchantName.setText(card.getMerchantName());
         holder.tvMemberNumber.setText("ID: " + card.getMemberNumber());
         holder.tvTier.setText(card.getTier());
+
+        if (listener != null) {
+            holder.itemView.setOnClickListener(v -> listener.onMemberClick(card));
+        } else {
+            holder.itemView.setOnClickListener(null);
+        }
     }
+
 
     @Override
     public int getItemCount() {

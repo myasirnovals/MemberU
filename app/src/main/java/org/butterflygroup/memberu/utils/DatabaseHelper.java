@@ -113,4 +113,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return result != -1;
     }
+
+    public Cursor getMemberCardById(int memberCardId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT m.*, c.category_name FROM " + TABLE_MEMBER_CARDS + " m " +
+                "JOIN " + TABLE_CATEGORIES + " c ON m.category_id = c.id " +
+                "WHERE m.id = ?";
+        return db.rawQuery(query, new String[]{String.valueOf(memberCardId)});
+    }
 }
