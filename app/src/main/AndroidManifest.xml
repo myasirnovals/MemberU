@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MemberU">
         <activity
+            android:name=".views.AddMemberActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.CustomScannerActivity"
             android:exported="false" />
         <activity
@@ -31,6 +34,13 @@
         </activity>
         <activity
             android:name=".views.HomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".views.DetailCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.SyncDetailActivity"
             android:exported="false" />
     </application>
 

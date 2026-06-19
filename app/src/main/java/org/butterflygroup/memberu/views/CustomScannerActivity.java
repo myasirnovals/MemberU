@@ -6,11 +6,14 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
@@ -23,6 +26,7 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.RGBLuminanceSource;
 
 import org.butterflygroup.memberu.R;
+
 import java.io.InputStream;
 
 public class CustomScannerActivity extends AppCompatActivity {

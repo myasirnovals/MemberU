@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profileRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F8">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ===== SECTION 1: HEADER UNGU ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#6B4EFF"
+                android:orientation="vertical"
+                android:paddingBottom="36dp">
+
+                <!-- Toolbar: Back + Judul + Edit -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <TextView
+                        android:id="@+id/btnBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="6dp"
+                        android:text="←"
+                        android:textColor="#FFFFFF"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Profil Saya"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnEdit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="6dp"
+                        android:text="✏ Edit"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp" />
+
+                </RelativeLayout>
+
+                <!-- Avatar + Info User -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="4dp">
+
+                    <!-- Lingkaran Avatar -->
+                    <TextView
+                        android:layout_width="74dp"
+                        android:layout_height="74dp"
+                        android:background="@drawable/shape_circle_avatar"
+                        android:gravity="center"
+                        android:text="A"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvUsername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="AAAAAAA"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="email@gmail.com"
+                        android:textColor="#CCFFFFFF"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="+62 888-8888-8888"
+                        android:textColor="#CCFFFFFF"
+                        android:textSize="13sp" />
+
+                    <!-- Badge Terverifikasi -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/shape_badge_verified"
+                        android:paddingLeft="14dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="14dp"
+                        android:paddingBottom="5dp"
+                        android:text="✓ Akun Terverifikasi"
+                        android:textColor="#2ECC71"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ===== SECTION 2: STATS CARD (melayang di atas header) ===== -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="-20dp"
+                android:layout_marginRight="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:orientation="horizontal">
+
+                    <!-- Member Aktif -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <TextView android:id="@+id/tvMemberAktif"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="5" android:textSize="20sp" android:textStyle="bold" android:textColor="#222222" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Member Aktif" android:textSize="10sp" android:textColor="#999999" />
+                    </LinearLayout>
+
+                    <View android:layout_width="1dp" android:layout_height="36dp"
+                        android:layout_gravity="center" android:background="#E0E0E0" />
+
+                    <!-- Kategori -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <TextView android:id="@+id/tvKategori"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="3" android:textSize="20sp" android:textStyle="bold" android:textColor="#222222" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Kategori" android:textSize="10sp" android:textColor="#999999" />
+                    </LinearLayout>
+
+                    <View android:layout_width="1dp" android:layout_height="36dp"
+                        android:layout_gravity="center" android:background="#E0E0E0" />
+
+                    <!-- Total Kunjungan -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <TextView android:id="@+id/tvKunjungan"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="12" android:textSize="20sp" android:textStyle="bold" android:textColor="#222222" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Total Kunjungan" android:textSize="10sp" android:textColor="#999999" />
+                    </LinearLayout>
+
+                    <View android:layout_width="1dp" android:layout_height="36dp"
+                        android:layout_gravity="center" android:background="#E0E0E0" />
+
+                    <!-- Tier Terbaik -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <TextView android:id="@+id/tvTier"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Gold" android:textSize="20sp" android:textStyle="bold" android:textColor="#F4A234" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Tier Terbaik" android:textSize="10sp" android:textColor="#999999" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- ===== SECTION 3: MEMBER TERSIMPAN ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <!-- Header baris: judul + link -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Member Tersimpan"
+                        android:textColor="#1A1A1A" android:textSize="15sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvLihatSemua"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Lihat Semua →"
+                        android:textColor="#6B4EFF" android:textSize="13sp" />
+                </LinearLayout>
+
+                <!-- Horizontal scroll kartu member -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Kartu: Gym Cimahi -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="95dp" android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            app:cardCornerRadius="12dp" app:cardElevation="3dp">
+                            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:gravity="center" android:orientation="vertical" android:padding="10dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="🏋️" android:textSize="24sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp" android:gravity="center"
+                                    android:text="Gym Cimahi" android:textColor="#1A1A1A"
+                                    android:textSize="11sp" android:textStyle="bold" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="ID: 2350081010" android:textColor="#AAAAAA" android:textSize="9sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Gold" android:textColor="#F4A234"
+                                    android:textSize="10sp" android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Kartu: Barbershop -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="95dp" android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            app:cardCornerRadius="12dp" app:cardElevation="3dp">
+                            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:gravity="center" android:orientation="vertical" android:padding="10dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="✂️" android:textSize="24sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp" android:gravity="center"
+                                    android:text="Barbershop" android:textColor="#1A1A1A"
+                                    android:textSize="11sp" android:textStyle="bold" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="ID: 2350081010" android:textColor="#AAAAAA" android:textSize="9sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Gold" android:textColor="#F4A234"
+                                    android:textSize="10sp" android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Kartu: Laundry -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="95dp" android:layout_height="wrap_content"
+                            app:cardCornerRadius="12dp" app:cardElevation="3dp">
+                            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:gravity="center" android:orientation="vertical" android:padding="10dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="🧺" android:textSize="24sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp" android:gravity="center"
+                                    android:text="Laundry" android:textColor="#1A1A1A"
+                                    android:textSize="11sp" android:textStyle="bold" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="ID: 2350081010" android:textColor="#AAAAAA" android:textSize="9sp" />
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:text="Gold" android:textColor="#F4A234"
+                                    android:textSize="10sp" android:textStyle="bold" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <!-- ===== SECTION 4: KEAMANAN AKUN ===== -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:text="🔒 Keamanan Akun"
+                android:textColor="#1A1A1A"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Row: Ganti Password -->
+                    <RelativeLayout
+                        android:id="@+id/itemGantiPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="16dp">
+
+                        <TextView android:id="@+id/iconPassword"
+                            android:layout_width="36dp" android:layout_height="36dp"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/shape_circle_purple_light"
+                            android:gravity="center"
+                            android:text="🔑" android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/iconPassword"
+                            android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Ganti Password"
+                                android:textColor="#1A1A1A" android:textSize="14sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Terakhir diubah 30 hari lalu"
+                                android:textColor="#999999" android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="›" android:textColor="#CCCCCC" android:textSize="26sp" />
+
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+                        android:background="#F0F0F0" />
+
+                    <!-- Row: PIN & Biometrik -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+                        <TextView android:id="@+id/iconBiometrik"
+                            android:layout_width="36dp" android:layout_height="36dp"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/shape_circle_green_light"
+                            android:gravity="center"
+                            android:text="🪪" android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/iconBiometrik"
+                            android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="PIN &amp; Biometrik"
+                                android:textColor="#1A1A1A" android:textSize="14sp" android:textStyle="bold" />
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Sidik jari aktif"
+                                android:textColor="#999999" android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <Switch
+                            android:id="@+id/switchBiometrik"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:checked="true" />
+
+                    </RelativeLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+                        android:background="#F0F0F0" />
+
+                    <!-- Row: Verifikasi 2 Langkah -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+                        <TextView android:id="@+id/iconVerif"
+                            android:layout_width="36dp" android:layout_height="36dp"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/shape_circle_yellow_light"
+                            android:gravity="center"
+                            android:text="🛡" android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="12dp"
+                            android:layout_toEndOf="@id/iconVerif"
+                            android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Verifikasi 2 Langkah"
+                                android:textColor="#1A1A1A" android:textSize="14sp" android:textStyle="bold" />
+                            <TextView android:id="@+id/tvVerifSubtitle"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Via SMS ke +62 812-***-7890"
+                                android:textColor="#999999" android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <Switch
+                            android:id="@+id/switchVerif"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:checked="true" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- ===== SECTION 5: TOMBOL KELUAR ===== -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <RelativeLayout
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="⏻  Keluar dari Akun"
+                        android:textColor="#FF5252"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Footer -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="28dp"
+                android:gravity="center"
+                android:text="memberU · Dibuat dengan lorem ipsum"
+                android:textColor="#BBBBBB"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
