@@ -1,109 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F3F3F7">
+    android:background="#F1F4FB"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context=".views.SettingActivity">
+
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pengaturan"
+            android:textColor="#333333"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:fitsSystemWindows="true"
+        app:backgroundTint="@null"
+        app:elevation="0dp"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#000000"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <RelativeLayout
+        android:id="@+id/btn_qris"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"
+        android:elevation="12dp"
+        android:translationZ="12dp">
+
+        <FrameLayout
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_qris_inner"
+            android:elevation="8dp"
+            android:outlineProvider="background">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_qr_code"
+                app:tint="@android:color/white" />
+        </FrameLayout>
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/header_container"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pengaturan"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_marginBottom="20dp"/>
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:background="#E6E6E6">
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="#FFFFFF">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Notifikasi"
-                    android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:orientation="vertical"
+                    android:padding="4dp">
 
-                <Switch
-                    android:id="@+id/switchNotification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/menu_notification"
+                        style="@style/SettingsMenuRow">
+                        <ImageView style="@style/SettingsMenuIcon" android:src="@drawable/ic_notifications" />
+                        <TextView style="@style/SettingsMenuText" android:text="Notifikasi" />
 
-            <Switch
-                android:id="@+id/switchDarkMode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mode Gelap"
-                android:textSize="18sp"
-                android:layout_marginTop="12dp"/>
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switch_notif"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View style="@style/SettingsDivider" />
 
-            <TextView
-                android:id="@+id/tvRate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rate App"
-                android:textSize="18sp"
-                android:padding="12dp"/>
+                    <LinearLayout
+                        android:id="@+id/menu_dark_mode"
+                        style="@style/SettingsMenuRow">
+                        <ImageView style="@style/SettingsMenuIcon" android:src="@drawable/ic_dark_mode" />
+                        <TextView style="@style/SettingsMenuText" android:text="Mode Gelap" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switch_dark_mode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View style="@style/SettingsDivider" />
 
-            <TextView
-                android:id="@+id/tvShare"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Share App"
-                android:textSize="18sp"
-                android:padding="12dp"/>
+                    <LinearLayout
+                        android:id="@+id/menu_rate"
+                        style="@style/SettingsMenuRow">
+                        <ImageView style="@style/SettingsMenuIcon" android:src="@drawable/ic_rate_app" />
+                        <TextView style="@style/SettingsMenuText" android:text="Rate App" />
+                    </LinearLayout>
+                    <View style="@style/SettingsDivider" />
 
-            <TextView
-                android:id="@+id/tvPrivacy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Privacy Policy"
-                android:textSize="18sp"
-                android:padding="12dp"/>
+                    <LinearLayout
+                        android:id="@+id/menu_share"
+                        style="@style/SettingsMenuRow">
+                        <ImageView style="@style/SettingsMenuIcon" android:src="@drawable/ic_share_app" />
+                        <TextView style="@style/SettingsMenuText" android:text="Share App" />
+                    </LinearLayout>
+                    <View style="@style/SettingsDivider" />
 
-            <TextView
-                android:id="@+id/tvTerms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Term and Conditions"
-                android:textSize="18sp"
-                android:padding="12dp"/>
+                    <LinearLayout
+                        android:id="@+id/menu_privacy"
+                        style="@style/SettingsMenuRow">
+                        <ImageView style="@style/SettingsMenuIcon" android:src="@drawable/ic_privacy_policy" />
+                        <TextView style="@style/SettingsMenuText" android:text="Privacy Policy" />
+                    </LinearLayout>
+                    <View style="@style/SettingsDivider" />
 
-            <TextView
-                android:id="@+id/tvContact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Contact"
-                android:textSize="18sp"
-                android:padding="12dp"/>
+                    <LinearLayout
+                        android:id="@+id/menu_terms"
+                        style="@style/SettingsMenuRow">
+                        <ImageView style="@style/SettingsMenuIcon" android:src="@drawable/ic_term_and_condition" />
+                        <TextView style="@style/SettingsMenuText" android:text="Term and Conditions" />
+                    </LinearLayout>
+                    <View style="@style/SettingsDivider" />
 
-            <TextView
-                android:id="@+id/tvFeedback"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Feedback"
-                android:textSize="18sp"
-                android:padding="12dp"/>
+                    <LinearLayout
+                        android:id="@+id/menu_contact"
+                        style="@style/SettingsMenuRow">
+                        <ImageView style="@style/SettingsMenuIcon" android:src="@drawable/ic_contact" />
+                        <TextView style="@style/SettingsMenuText" android:text="Contact" />
+                    </LinearLayout>
+                    <View style="@style/SettingsDivider" />
 
+                    <LinearLayout
+                        android:id="@+id/menu_feedback"
+                        style="@style/SettingsMenuRow">
+                        <ImageView style="@style/SettingsMenuIcon" android:src="@drawable/ic_feedback" />
+                        <TextView style="@style/SettingsMenuText" android:text="Feedback" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

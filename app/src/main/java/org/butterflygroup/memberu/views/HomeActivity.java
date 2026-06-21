@@ -1,7 +1,6 @@
 package org.butterflygroup.memberu.views;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,10 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-// FIX: Hapus import ChipGroup & Chip karena XML tidak pakai komponen itu
-// import com.google.android.material.chip.Chip;       ← DIHAPUS
-// import com.google.android.material.chip.ChipGroup;  ← DIHAPUS
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
@@ -40,38 +36,25 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements MainView {
 
-    // ── Controllers & Helpers ─────────────────────────────────────────────────
     private MainController controller;
-    private DatabaseHelper  dbHelper;
-
-    // ── Data ──────────────────────────────────────────────────────────────────
+    private DatabaseHelper dbHelper;
+    private RecyclerView rvMembers;
+    private MemberAdapter memberAdapter;
     private List<MemberCard> memberList;
     private List<MemberCard> filteredList;
-
-    // ── Views ─────────────────────────────────────────────────────────────────
-    private RecyclerView  rvMembers;
-    private MemberAdapter memberAdapter;
-    private List<Button>  categoryButtons; // FIX: pakai List<Button>, bukan ChipGroup
-
-    // ── State ─────────────────────────────────────────────────────────────────
+    private List<Button> categoryButtons;
     private String activeCategory = "Semua";
-    private String searchQuery    = "";
+    private String searchQuery = "";
 
-    // ── Scanner ───────────────────────────────────────────────────────────────
-    private final ActivityResultLauncher<ScanOptions> barcodeLauncher =
-            registerForActivityResult(new ScanContract(), result -> {
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(
+            new ScanContract(),
+            result -> {
                 if (result.getContents() == null) {
                     Toast.makeText(this, "Scan dibatalkan", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this,
-                            "Berhasil! QR: " + result.getContents(),
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Berhasil! QR: " + result.getContents(), Toast.LENGTH_LONG).show();
                 }
             });
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // LIFECYCLE
-    // ══════════════════════════════════════════════════════════════════════════
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,38 +64,35 @@ public class HomeActivity extends AppCompatActivity implements MainView {
 
         setupWindowInsets();
 
-        controller   = new MainController(this);
-        dbHelper     = new DatabaseHelper(this);
-        memberList   = new ArrayList<>();
+        controller = new MainController(this);
+        dbHelper = new DatabaseHelper(this);
+        memberList = new ArrayList<>();
         filteredList = new ArrayList<>();
 
         initViews();
         setupClickListeners();
+        setupBottomNavigation();
         setupSearch();
         setupCategoryFilter();
-
         loadDataFromDatabase();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (dbHelper != null) loadDataFromDatabase();
+        loadDataFromDatabase();
+
+        // Memastikan ikon Cards selalu hijau saat kembali ke halaman ini
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        if (bottomNav != null) {
+            bottomNav.getMenu().findItem(R.id.nav_cards).setChecked(true);
+        }
     }
 
-    // ══════════════════════════════════════════════════════════════════════════
-    // SETUP
-    // ══════════════════════════════════════════════════════════════════════════
-
     private void setupWindowInsets() {
-        View headerContainer = findViewById(R.id.header_container);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, 0, systemBars.right, 0);
-            int p16 = (int) (16 * getResources().getDisplayMetrics().density);
-            if (headerContainer != null) {
-                headerContainer.setPadding(p16, systemBars.top + p16, p16, p16);
-            }
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(bars.left, 0, bars.right, 0);
             return insets;
         });
     }
@@ -123,127 +103,126 @@ public class HomeActivity extends AppCompatActivity implements MainView {
     }
 
     private void setupClickListeners() {
-
-        // ── FIX ERROR 1: btn_profile sekarang ada di XML ──────────────────────
-        View btnProfile = findViewById(R.id.btn_profile);
-        if (btnProfile != null) {
-            btnProfile.setOnClickListener(v ->
-                    startActivity(new Intent(this, ProfileActivity.class))
-            );
-        }
-
-        // ── QRIS ─────────────────────────────────────────────────────────────
         View btnQris = findViewById(R.id.btn_qris);
         if (btnQris != null) {
             btnQris.setOnClickListener(v -> {
-                Animation bounce = AnimationUtils.loadAnimation(this, R.anim.anim_bounce);
-                v.startAnimation(bounce);
+                Animation anim = AnimationUtils.loadAnimation(this, R.anim.anim_bounce);
+                v.startAnimation(anim);
                 v.postDelayed(this::bukaKameraScanner, 150);
             });
         }
 
-        // ── Tambah Member ─────────────────────────────────────────────────────
         View btnTambah = findViewById(R.id.btn_add_member);
         if (btnTambah != null) {
             btnTambah.setOnClickListener(v -> {
-                Animation click = AnimationUtils.loadAnimation(this, R.anim.anim_click);
-                v.startAnimation(click);
-                v.postDelayed(() ->
-                        startActivity(new Intent(this, AddMemberActivity.class)), 150);
+                startActivity(new Intent(this, AddMemberActivity.class));
+            });
+        }
+
+        View btnProfile = findViewById(R.id.btn_profile);
+        if (btnProfile != null) {
+            btnProfile.setOnClickListener(v -> {
+                startActivity(new Intent(this, ProfileActivity.class));
             });
         }
     }
 
-    // FIX ERROR 2: et_search sekarang ada di XML → langsung bekerja
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+
+        if (bottomNav != null) {
+            // Set awal ke nav_cards
+            bottomNav.setSelectedItemId(R.id.nav_cards);
+
+            bottomNav.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
+
+                if (id == R.id.nav_settings) {
+                    Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    return false; // Jangan jadikan true agar ikon tidak nyangkut saat ditinggalkan
+                }
+
+                return true;
+            });
+        }
+    }
+
     private void setupSearch() {
-        EditText etSearch = findViewById(R.id.et_search);
-        if (etSearch == null) return;
+        EditText search = findViewById(R.id.et_search);
+        if (search == null) {
+            return;
+        }
 
-        etSearch.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void afterTextChanged(Editable s) {}
-
-            @Override
+        search.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void afterTextChanged(Editable s) {}
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchQuery = s.toString().toLowerCase().trim();
+                searchQuery = s.toString().toLowerCase();
                 applyFilter();
             }
         });
     }
 
-    /**
-     * FIX ERROR 3: Ganti ChipGroup → Button biasa dengan ID.
-     * XML pakai <Button>, bukan <ChipGroup>, jadi disesuaikan.
-     */
     private void setupCategoryFilter() {
-        Button btnSemua      = findViewById(R.id.btn_cat_semua);
-        Button btnGym        = findViewById(R.id.btn_cat_gym);
-        Button btnBarbershop = findViewById(R.id.btn_cat_barbershop);
-        Button btnLaundry    = findViewById(R.id.btn_cat_laundry);
-
         categoryButtons = new ArrayList<>();
-        if (btnSemua != null)      categoryButtons.add(btnSemua);
-        if (btnGym != null)        categoryButtons.add(btnGym);
-        if (btnBarbershop != null) categoryButtons.add(btnBarbershop);
-        if (btnLaundry != null)    categoryButtons.add(btnLaundry);
-
-        for (Button btn : categoryButtons) {
-            btn.setOnClickListener(v -> {
-                activeCategory = ((Button) v).getText().toString();
-                updateCategoryButtonState((Button) v);
-                applyFilter();
-            });
-        }
-    }
-
-    /** Ubah tampilan button: dipilih = biru, lainnya = putih */
-    private void updateCategoryButtonState(Button selected) {
-        for (Button btn : categoryButtons) {
-            boolean aktif = (btn == selected);
-            btn.setBackgroundTintList(
-                    ColorStateList.valueOf(aktif ? 0xFF4361EE : 0xFFFFFFFF)
-            );
-            btn.setTextColor(aktif ? 0xFFFFFFFF : 0xFF333333);
-        }
     }
 
     private void bukaKameraScanner() {
-
         ScanOptions options = new ScanOptions();
         options.setPrompt("");
         options.setBeepEnabled(true);
         options.setOrientationLocked(false);
         options.setCaptureActivity(CustomScannerActivity.class);
-
         barcodeLauncher.launch(options);
     }
 
     private void loadDataFromDatabase() {
         memberList.clear();
-
         Cursor cursor = dbHelper.getAllMemberCards();
+
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                memberList.add(new MemberCard(
-                        cursor.getInt(cursor.getColumnIndexOrThrow("id")),
-                        cursor.getInt(cursor.getColumnIndexOrThrow("user_id")),
-                        cursor.getInt(cursor.getColumnIndexOrThrow("category_id")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("category_name")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("merchant_name")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("member_number")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("tier")),
-                        ""
-                ));
+                memberList.add(
+                        new MemberCard(
+                                cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                                cursor.getInt(cursor.getColumnIndexOrThrow("user_id")),
+                                cursor.getInt(cursor.getColumnIndexOrThrow("category_id")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("category_name")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("merchant_name")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("member_number")),
+                                cursor.getString(cursor.getColumnIndexOrThrow("tier")),
+                                ""
+                        )
+                );
             } while (cursor.moveToNext());
             cursor.close();
         }
+        applyFilter();
+    }
 
-        memberAdapter = new org.butterflygroup.memberu.adapters.MemberAdapter(memberList, card -> {
-            android.content.Intent intent = new android.content.Intent(HomeActivity.this, DetailCardActivity.class);
-            intent.putExtra(org.butterflygroup.memberu.views.DetailCardActivity.EXTRA_MEMBER_CARD_ID, card.getId());
+    private void applyFilter() {
+        filteredList.clear();
+
+        for (MemberCard card : memberList) {
+            boolean cocok = card.getMerchantName().toLowerCase().contains(searchQuery);
+            if (cocok) {
+                filteredList.add(card);
+            }
+        }
+
+        memberAdapter = new MemberAdapter(filteredList, card -> {
+            Intent intent = new Intent(this, DetailCardActivity.class);
+            intent.putExtra(DetailCardActivity.EXTRA_MEMBER_CARD_ID, card.getId());
             startActivity(intent);
-            overridePendingTransition(R.anim.anim_click, R.anim.anim_click);
         });
+
         rvMembers.setAdapter(memberAdapter);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

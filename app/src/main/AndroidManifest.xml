@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permission Kamera -->
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
@@ -17,31 +18,59 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MemberU">
+
+        <!-- Add Member -->
         <activity
             android:name=".views.AddMemberActivity"
             android:exported="false" />
+
+        <!-- Scanner -->
         <activity
             android:name=".views.CustomScannerActivity"
             android:exported="false" />
+
+        <!-- Main (Halaman Awal) -->
         <activity
             android:name=".views.MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+            <intent-filter>
+
+                <action
+                    android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
+
         </activity>
+
+        <!-- Home -->
         <activity
             android:name=".views.HomeActivity"
             android:exported="false" />
 
+        <!-- Detail -->
         <activity
             android:name=".views.DetailCardActivity"
             android:exported="false" />
+
+        <!-- Sync -->
         <activity
             android:name=".views.SyncDetailActivity"
             android:exported="false" />
+
+        <!-- Setting -->
+        <activity
+            android:name=".views.SettingActivity"
+            android:exported="true" />
+
+        <!-- Profile -->
+        <activity
+            android:name=".views.ProfileActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
