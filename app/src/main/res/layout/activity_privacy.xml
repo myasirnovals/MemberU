@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?android:attr/colorBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:elevation="4dp"
+        android:background="?android:attr/colorBackground">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="?attr/homeAsUpIndicator"
+            app:tint="?attr/colorControlNormal"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Privacy Policy"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="4dp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:text="Kebijakan Privasi MemberU\n\nTerakhir diperbarui: Juni 2026\n\n1. Pendahuluan\nSelamat datang di MemberU. Kami menghargai privasi Anda dan berkomitmen untuk melindungi informasi pribadi Anda. Aplikasi ini dirancang untuk beroperasi secara offline.\n\n2. Pengumpulan dan Penyimpanan Data\nSemua data kartu anggota yang Anda tambahkan ke dalam aplikasi MemberU disimpan secara lokal di perangkat Anda (menggunakan database SQLite lokal). Kami tidak mengumpulkan, mengirim, atau menyimpan data Anda di server eksternal kami.\n\n3. Penggunaan Kamera\nAplikasi ini memerlukan izin kamera semata-mata untuk fitur pemindaian Barcode/QR Code kartu Anda. Gambar yang ditangkap oleh kamera tidak disimpan atau dikirim ke pihak mana pun.\n\n4. Keamanan Data\nKarena data disimpan secara lokal, keamanan data bergantung pada keamanan perangkat Anda. Kami menyarankan Anda untuk menggunakan fitur keamanan perangkat (seperti PIN, sidik jari, atau kata sandi) untuk melindungi data Anda.\n\n5. Perubahan pada Kebijakan Privasi\nKami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Perubahan akan berlaku segera setelah dipublikasikan di dalam aplikasi.\n\n6. Hubungi Kami\nJika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami melalui fitur 'Contact' di menu Pengaturan." />
+    </ScrollView>
+
+</LinearLayout>
