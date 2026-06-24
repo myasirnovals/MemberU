@@ -1,5 +1,8 @@
 package org.butterflygroup.memberu.views;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -17,7 +20,7 @@ import org.butterflygroup.memberu.R;
 public class ProfileActivity extends AppCompatActivity {
 
     // ── View references ──────────────────────────────────────────────────────
-    private TextView       btnBack, btnEdit, tvLihatSemua;
+    private TextView       btnBack, btnEdit, tvLihatSemua, tvUsername, tvPhone;
     private RelativeLayout itemGantiPassword, btnLogout;
     private Switch         switchBiometrik, switchVerif;
 
@@ -27,7 +30,6 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // Edge-to-edge padding (sama seperti MainActivity)
         ViewCompat.setOnApplyWindowInsetsListener(
                 findViewById(R.id.profileRoot), (v, insets) -> {
                     Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -39,6 +41,13 @@ public class ProfileActivity extends AppCompatActivity {
         setupListeners();
     }
 
+    // PENTING: Memuat ulang data setiap kali halaman profil aktif kembali
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadProfileData();
+    }
+
     // ── Inisialisasi view ─────────────────────────────────────────────────────
     private void initViews() {
         btnBack           = findViewById(R.id.btnBack);
@@ -48,49 +57,62 @@ public class ProfileActivity extends AppCompatActivity {
         btnLogout         = findViewById(R.id.btnLogout);
         switchBiometrik   = findViewById(R.id.switchBiometrik);
         switchVerif       = findViewById(R.id.switchVerif);
+
+        // Tambahkan inisialisasi komponen teks profil Anda
+        tvUsername        = findViewById(R.id.tvUsername);
+        tvPhone           = findViewById(R.id.tvPhone);
+    }
+
+    // Fungsi membaca data tersimpan
+    private void loadProfileData() {
+        SharedPreferences sharedPref = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
+        String username = sharedPref.getString("username", "AAAAAAA"); // "AAAAAAA" adalah nilai default awal
+        String phone = sharedPref.getString("phone", "+62 888-8888-8888");
+
+        if (tvUsername != null) tvUsername.setText(username);
+        if (tvPhone != null) tvPhone.setText(phone);
     }
 
     // ── Setup click listener ──────────────────────────────────────────────────
     private void setupListeners() {
 
-        // Tombol kembali → tutup Activity ini
         btnBack.setOnClickListener(v -> finish());
 
-        // Tombol edit profil
-        btnEdit.setOnClickListener(v ->
-                Toast.makeText(this, "Fitur edit profil segera hadir", Toast.LENGTH_SHORT).show());
+        btnEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+            startActivity(intent);
+        });
 
-        // Link "Lihat Semua" member
-        tvLihatSemua.setOnClickListener(v ->
-                Toast.makeText(this, "Menampilkan semua member", Toast.LENGTH_SHORT).show());
+        tvLihatSemua.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        });
 
-        // Item Ganti Password
-        itemGantiPassword.setOnClickListener(v ->
-                Toast.makeText(this, "Halaman ganti password", Toast.LENGTH_SHORT).show());
+        itemGantiPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(ProfileActivity.this, ChangePasswordActivity.class);
+            startActivity(intent);
+        });
 
-        // Toggle Biometrik
         switchBiometrik.setOnCheckedChangeListener((btn, checked) ->
                 Toast.makeText(this,
                         checked ? "PIN & Biometrik diaktifkan" : "PIN & Biometrik dinonaktifkan",
                         Toast.LENGTH_SHORT).show());
 
-        // Toggle Verifikasi 2 Langkah
         switchVerif.setOnCheckedChangeListener((btn, checked) ->
                 Toast.makeText(this,
                         checked ? "Verifikasi 2 Langkah aktif" : "Verifikasi 2 Langkah nonaktif",
                         Toast.LENGTH_SHORT).show());
 
-        // Tombol Logout → tampilkan dialog konfirmasi
         btnLogout.setOnClickListener(v -> showLogoutDialog());
     }
 
-    // ── Dialog Konfirmasi Logout ──────────────────────────────────────────────
     private void showLogoutDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Keluar dari Akun")
                 .setMessage("Apakah kamu yakin ingin keluar dari akun ini?")
                 .setPositiveButton("Ya, Keluar", (dialog, which) -> {
-                    // TODO: bersihkan session / SharedPreferences di sini
                     finish();
                 })
                 .setNegativeButton("Batal", null)

@@ -66,6 +66,17 @@
             android:name=".views.FeedbackActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".views.PromoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MemberU" />
+
+        <activity android:name=".views.EditProfileActivity"
+            android:exported="false" />
+
+        <activity android:name=".views.ChangePasswordActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

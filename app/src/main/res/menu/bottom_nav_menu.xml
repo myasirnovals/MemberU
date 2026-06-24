@@ -4,7 +4,7 @@
     <item
         android:id="@+id/nav_cards"
         android:icon="@drawable/ic_member_cards"
-        android:title="Cards" />
+        android:title="Kartu" />
 
     <item
         android:id="@+id/nav_qris"

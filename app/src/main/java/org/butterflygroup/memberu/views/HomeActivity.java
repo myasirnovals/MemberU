@@ -1,7 +1,9 @@
 package org.butterflygroup.memberu.views;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -68,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         dbHelper = new DatabaseHelper(this);
         memberList = new ArrayList<>();
         filteredList = new ArrayList<>();
+        categoryButtons = new ArrayList<>();
 
         initViews();
         setupClickListeners();
@@ -82,7 +85,6 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         super.onResume();
         loadDataFromDatabase();
 
-        // Memastikan ikon Cards selalu hijau saat kembali ke halaman ini
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         if (bottomNav != null) {
             bottomNav.getMenu().findItem(R.id.nav_cards).setChecked(true);
@@ -114,16 +116,18 @@ public class HomeActivity extends AppCompatActivity implements MainView {
 
         View btnTambah = findViewById(R.id.btn_add_member);
         if (btnTambah != null) {
-            btnTambah.setOnClickListener(v -> {
-                startActivity(new Intent(this, AddMemberActivity.class));
-            });
+            btnTambah.setOnClickListener(v -> startActivity(new Intent(this, AddMemberActivity.class)));
         }
 
         View btnProfile = findViewById(R.id.btn_profile);
         if (btnProfile != null) {
-            btnProfile.setOnClickListener(v -> {
-                startActivity(new Intent(this, ProfileActivity.class));
-            });
+            btnProfile.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+        }
+
+        // MODIFIKASI: Tombol Lihat Promo sekarang membuka PromoActivity
+        View btnLihatPromo = findViewById(R.id.btn_lihat_promo);
+        if (btnLihatPromo != null) {
+            btnLihatPromo.setOnClickListener(v -> startActivity(new Intent(this, PromoActivity.class)));
         }
     }
 
@@ -131,7 +135,6 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
         if (bottomNav != null) {
-            // Set awal ke nav_cards
             bottomNav.setSelectedItemId(R.id.nav_cards);
 
             bottomNav.setOnItemSelectedListener(item -> {
@@ -141,7 +144,7 @@ public class HomeActivity extends AppCompatActivity implements MainView {
                     Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
                     startActivity(intent);
                     overridePendingTransition(0, 0);
-                    return false; // Jangan jadikan true agar ikon tidak nyangkut saat ditinggalkan
+                    return false;
                 }
 
                 return true;
@@ -151,9 +154,7 @@ public class HomeActivity extends AppCompatActivity implements MainView {
 
     private void setupSearch() {
         EditText search = findViewById(R.id.et_search);
-        if (search == null) {
-            return;
-        }
+        if (search == null) return;
 
         search.addTextChangedListener(new TextWatcher() {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -165,8 +166,40 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         });
     }
 
+    // ════════════ FILTER KATEGORI ════════════
     private void setupCategoryFilter() {
-        categoryButtons = new ArrayList<>();
+        Button btnSemua = findViewById(R.id.btn_cat_semua);
+        Button btnGym = findViewById(R.id.btn_cat_gym);
+        Button btnBarbershop = findViewById(R.id.btn_cat_barbershop);
+        Button btnLaundry = findViewById(R.id.btn_cat_laundry);
+
+        if (btnSemua != null) categoryButtons.add(btnSemua);
+        if (btnGym != null) categoryButtons.add(btnGym);
+        if (btnBarbershop != null) categoryButtons.add(btnBarbershop);
+        if (btnLaundry != null) categoryButtons.add(btnLaundry);
+
+        for (Button btn : categoryButtons) {
+            btn.setOnClickListener(v -> {
+                activeCategory = btn.getText().toString();
+                updateCategoryUI();
+                applyFilter();
+            });
+        }
+        updateCategoryUI();
+    }
+
+    private void updateCategoryUI() {
+        for (Button btn : categoryButtons) {
+            if (btn.getText().toString().equalsIgnoreCase(activeCategory)) {
+                // Aktif (Biru)
+                btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4361ee")));
+                btn.setTextColor(Color.WHITE);
+            } else {
+                // Tidak Aktif (Putih)
+                btn.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+                btn.setTextColor(Color.parseColor("#333333"));
+            }
+        }
     }
 
     private void bukaKameraScanner() {
@@ -188,7 +221,7 @@ public class HomeActivity extends AppCompatActivity implements MainView {
                         new MemberCard(
                                 cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                                 cursor.getInt(cursor.getColumnIndexOrThrow("user_id")),
-                                cursor.getInt(cursor.getColumnIndexOrThrow("category_id")),
+                                cursor.getInt(cursor.getInt(cursor.getColumnIndexOrThrow("category_id"))),
                                 cursor.getString(cursor.getColumnIndexOrThrow("category_name")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("merchant_name")),
                                 cursor.getString(cursor.getColumnIndexOrThrow("member_number")),
@@ -202,12 +235,17 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         applyFilter();
     }
 
+    // ════════════ PENYARINGAN GABUNGAN ════════════
     private void applyFilter() {
         filteredList.clear();
 
         for (MemberCard card : memberList) {
-            boolean cocok = card.getMerchantName().toLowerCase().contains(searchQuery);
-            if (cocok) {
+            boolean matchSearch = card.getMerchantName().toLowerCase().contains(searchQuery);
+
+            boolean matchCategory = activeCategory.equalsIgnoreCase("Semua") ||
+                    card.getCategoryName().equalsIgnoreCase(activeCategory);
+
+            if (matchSearch && matchCategory) {
                 filteredList.add(card);
             }
         }
