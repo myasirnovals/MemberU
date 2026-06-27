@@ -161,7 +161,7 @@ public class SettingActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         if (bottomNavigationView != null) {
-            bottomNavigationView.setSelectedItemId(R.id.nav_settings);
+            bottomNavigationView.getMenu().findItem(R.id.nav_settings).setChecked(true);
 
             bottomNavigationView.setOnItemSelectedListener(item -> {
                 int id = item.getItemId();

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.github.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="?android:attr/colorBackground"
     android:orientation="vertical"
     android:padding="24dp"
     tools:context=".views.AddMemberActivity">
@@ -19,15 +19,15 @@
         android:clickable="true"
         android:contentDescription="Kembali"
         android:focusable="true"
-        android:src="@android:drawable/ic_menu_revert"
-        app:tint="#000000" />
+        android:src="?attr/homeAsUpIndicator"
+        app:tint="?attr/colorControlNormal" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Tambah Member Baru"
-        android:textColor="#212121"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Nama Merchant / Tempat Bisnis"
-        android:textColor="#757575"
+        android:textColor="?android:attr/textColorSecondary"
         android:textStyle="bold" />
 
     <EditText
@@ -44,17 +44,20 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"
-        android:background="@android:drawable/editbox_background"
+        android:background="?attr/colorSurfaceVariant"
         android:hint="Contoh: Gym Fitness Cimahi"
         android:inputType="text"
-        android:paddingLeft="12dp" />
+        android:paddingHorizontal="12dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textColorHint="?android:attr/textColorSecondary"
+        android:textSize="14sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Nomor ID Member"
-        android:textColor="#757575"
+        android:textColor="?android:attr/textColorSecondary"
         android:textStyle="bold" />
 
     <EditText
@@ -62,17 +65,20 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"
-        android:background="@android:drawable/editbox_background"
+        android:background="?attr/colorSurfaceVariant"
         android:hint="Contoh: MB-99231"
         android:inputType="text"
-        android:paddingLeft="12dp" />
+        android:paddingHorizontal="12dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textColorHint="?android:attr/textColorSecondary"
+        android:textSize="14sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Kategori (GYM / BARBERSHOP / LAUNDRY)"
-        android:textColor="#757575"
+        android:textColor="?android:attr/textColorSecondary"
         android:textStyle="bold" />
 
     <EditText
@@ -80,18 +86,21 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
-        android:background="@android:drawable/editbox_background"
+        android:background="?attr/colorSurfaceVariant"
         android:hint="Ketik: GYM atau BARBERSHOP"
         android:inputType="text"
-        android:paddingLeft="12dp" />
+        android:paddingHorizontal="12dp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textColorHint="?android:attr/textColorSecondary"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/btn_save_member"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:backgroundTint="#007BF6"
+        app:backgroundTint="?attr/colorPrimary"
         android:text="Simpan Kartu Member"
-        android:textColor="#FFFFFF"
+        android:textColor="?attr/colorOnPrimary"
         android:textSize="16sp"
         android:textStyle="bold" />
 

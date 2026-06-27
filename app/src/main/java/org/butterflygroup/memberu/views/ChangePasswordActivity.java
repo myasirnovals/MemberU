@@ -3,7 +3,7 @@ package org.butterflygroup.memberu.views;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView; // <-- Import baru
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import org.butterflygroup.memberu.R;
@@ -12,7 +12,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     private EditText etLama, etBaru, etKonfirmasi;
     private Button btnSimpan;
-    private TextView btnBack;
+    private ImageView btnBack; // <-- Sudah diubah menjadi ImageView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

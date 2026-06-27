@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // ════════════ CEK MODE GELAP ════════════
-        // Menerapkan tema sebelum layout dimuat agar Splash Screen selaras dengan tema yang dipilih
+        // Menerapkan tema global untuk aplikasi berdasarkan preferensi user
         SharedPreferences prefs = getSharedPreferences("MemberUPrefs", MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("dark_mode_enabled", false);
         if (isDarkMode) {
@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
+        // ── MODIFIKASI: Paksa KHUSUS Splash Screen untuk selalu berada di Mode Terang ──
+        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);

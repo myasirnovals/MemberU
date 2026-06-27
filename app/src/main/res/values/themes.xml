@@ -1,9 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base Theme MemberU Light Mode - Material Design 3 -->
     <style name="Base.Theme.MemberU" parent="Theme.Material3.DayNight.NoActionBar">
 
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/brand_purple</item>
         <item name="colorOnPrimary">@color/on_primary</item>
         <item name="colorPrimaryContainer">@color/primary_container</item>
         <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
@@ -40,35 +39,29 @@
         <item name="android:navigationBarColor">@color/surface_light</item>
         <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
 
-        <!-- Shape: rounded corner untuk semua komponen UI -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.MemberU.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MemberU.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MemberU.LargeComponent</item>
 
     </style>
 
-    <!-- Main app theme -->
     <style name="Theme.MemberU" parent="Base.Theme.MemberU" />
 
-    <!-- Shape: corner 8dp - tombol, chip, input kecil -->
     <style name="ShapeAppearance.MemberU.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
 
-    <!-- Shape: corner 12dp - card sedang, dialog -->
     <style name="ShapeAppearance.MemberU.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>
 
-    <!-- Shape: corner 16dp - member card, bottom sheet -->
     <style name="ShapeAppearance.MemberU.LargeComponent" parent="ShapeAppearance.Material3.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
 
-    <!-- Member card: rounded corner, shadow ringan, border tipis -->
     <style name="Style.MemberU.MemberCard" parent="Widget.Material3.CardView.Elevated">
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">4dp</item>
@@ -77,7 +70,6 @@
         <item name="strokeWidth">1dp</item>
     </style>
 
-    <!-- Tombol utama: Tambah Member Baru, Simpan -->
     <style name="Style.MemberU.Button.Primary" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/primary</item>
         <item name="android:textColor">@color/on_primary</item>
@@ -85,21 +77,18 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- Tombol sekunder: outlined, warna primary -->
     <style name="Style.MemberU.Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
         <item name="strokeColor">@color/primary</item>
         <item name="android:textColor">@color/primary</item>
         <item name="cornerRadius">12dp</item>
     </style>
 
-    <!-- Tombol hapus: outlined, warna merah -->
     <style name="Style.MemberU.Button.Danger" parent="Widget.Material3.Button.OutlinedButton">
         <item name="strokeColor">@color/error</item>
         <item name="android:textColor">@color/error</item>
         <item name="cornerRadius">12dp</item>
     </style>
 
-    <!-- Input field: outlined box, rounded, error message aktif -->
     <style name="Style.MemberU.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="boxCornerRadiusTopStart">10dp</item>
         <item name="boxCornerRadiusTopEnd">10dp</item>
@@ -111,7 +100,6 @@
         <item name="errorIconDrawable">@null</item>
     </style>
 
-    <!-- Bottom navigation: Cards, QRIS, Pengaturan -->
     <style name="Style.MemberU.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
         <item name="itemActiveIndicatorStyle">@style/Style.MemberU.BottomNavIndicator</item>
         <item name="itemTextColor">@color/bottom_nav_color</item>
@@ -120,13 +108,11 @@
         <item name="elevation">8dp</item>
     </style>
 
-    <!-- Bottom nav indicator: background aktif rounded -->
     <style name="Style.MemberU.BottomNavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/primary_container</item>
         <item name="shapeAppearance">@style/ShapeAppearance.MemberU.SmallComponent</item>
     </style>
 
-    <!-- Filter chip: Semua, Gym, Barbershop, Laundry -->
     <style name="Style.MemberU.FilterChip" parent="Widget.Material3.Chip.Filter">
         <item name="chipCornerRadius">20dp</item>
         <item name="chipBackgroundColor">@color/chip_background_color</item>
@@ -136,7 +122,6 @@
         <item name="checkedIconVisible">false</item>
     </style>
 
-    <!-- Search bar: "Cari member" di Home Screen -->
     <style name="Style.MemberU.SearchBar" parent="Widget.Material3.SearchBar">
         <item name="android:background">@drawable/bg_search_bar</item>
         <item name="android:textColor">@color/text_primary</item>
@@ -144,7 +129,6 @@
         <item name="elevation">2dp</item>
     </style>
 
-    <!-- Top app bar: putih, tanpa elevation -->
     <style name="Style.MemberU.TopAppBar" parent="Widget.Material3.Toolbar.Surface">
         <item name="android:background">@color/surface_light</item>
         <item name="titleTextColor">@color/text_primary</item>
@@ -152,14 +136,12 @@
         <item name="elevation">0dp</item>
     </style>
 
-    <!-- Dialog konfirmasi: hapus kartu, logout -->
     <style name="Style.MemberU.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorSurface">@color/surface_light</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MemberU.MediumComponent</item>
     </style>
 
-    <!-- Tier badge Gold: teks coklat keemasan -->
     <style name="Style.MemberU.TierBadge.Gold">
         <item name="android:background">@drawable/bg_tier_gold</item>
         <item name="android:textColor">@color/tier_gold_text</item>
@@ -167,7 +149,6 @@
         <item name="android:textSize">11sp</item>
     </style>
 
-    <!-- Tier badge Silver: teks abu biru -->
     <style name="Style.MemberU.TierBadge.Silver">
         <item name="android:background">@drawable/bg_tier_silver</item>
         <item name="android:textColor">@color/tier_silver_text</item>
@@ -175,7 +156,6 @@
         <item name="android:textSize">11sp</item>
     </style>
 
-    <!-- Tier badge Platinum: teks abu gelap -->
     <style name="Style.MemberU.TierBadge.Platinum">
         <item name="android:background">@drawable/bg_tier_platinum</item>
         <item name="android:textColor">@color/tier_platinum_text</item>
@@ -183,47 +163,40 @@
         <item name="android:textSize">11sp</item>
     </style>
 
-    <!-- QR Code container: background putih agar mudah discan -->
     <style name="Style.MemberU.QRCodeContainer">
         <item name="android:background">@drawable/bg_qr_container</item>
         <item name="android:padding">16dp</item>
         <item name="elevation">4dp</item>
     </style>
 
-    <!-- Judul halaman: besar, bold -->
     <style name="TextAppearance.MemberU.PageTitle" parent="TextAppearance.Material3.HeadlineMedium">
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">22sp</item>
     </style>
 
-    <!-- Nama merchant di card: medium-large, semi-bold -->
     <style name="TextAppearance.MemberU.MerchantName" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <!-- ID member di card: abu sedang -->
     <style name="TextAppearance.MemberU.MemberID" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">13sp</item>
     </style>
 
-    <!-- Metadata kartu: kecil, abu muda -->
     <style name="TextAppearance.MemberU.Metadata" parent="TextAppearance.Material3.BodySmall">
         <item name="android:textColor">@color/text_hint</item>
         <item name="android:textSize">11sp</item>
     </style>
 
-    <!-- Label tombol: putih, bold -->
     <style name="TextAppearance.MemberU.ButtonLabel" parent="TextAppearance.Material3.LabelLarge">
         <item name="android:textColor">@color/on_primary</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <!-- Header section: primary color, huruf kapital kecil -->
     <style name="TextAppearance.MemberU.SectionHeader" parent="TextAppearance.Material3.TitleSmall">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textStyle">bold</item>
@@ -231,7 +204,6 @@
         <item name="android:letterSpacing">0.08</item>
     </style>
 
-    <!-- ==================== TAMBAHAN UNTUK SETTINGS ==================== -->
     <style name="SettingsMenuRow">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>
@@ -250,29 +222,27 @@
         <item name="android:layout_width">24dp</item>
         <item name="android:layout_height">24dp</item>
         <item name="android:layout_marginEnd">16dp</item>
-        <!-- PERBAIKAN: Mengubah app:tint menjadi tint -->
-        <item name="tint">#6444f3</item>
+        <item name="tint">?attr/colorPrimary</item>
     </style>
 
     <style name="SettingsMenuText">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textColor">#333333</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">15sp</item>
     </style>
 
     <style name="SettingsMenuArrow">
         <item name="android:layout_width">16dp</item>
         <item name="android:layout_height">16dp</item>
-        <!-- PERBAIKAN: Mengubah app:tint menjadi tint -->
-        <item name="tint">#afb6c5</item>
+        <item name="tint">?android:attr/textColorSecondary</item>
     </style>
 
     <style name="SettingsDivider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">#EAEAEA</item>
+        <item name="android:background">?attr/colorOutlineVariant</item>
 
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginEnd">16dp</item>

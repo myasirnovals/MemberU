@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ImageView; // <-- Import baru
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,7 +21,8 @@ import org.butterflygroup.memberu.R;
 public class ProfileActivity extends AppCompatActivity {
 
     // ── View references ──────────────────────────────────────────────────────
-    private TextView       btnBack, btnEdit, tvLihatSemua, tvUsername, tvPhone;
+    private ImageView      btnBack; // <-- Sudah diubah menjadi ImageView
+    private TextView       btnEdit, tvUsername, tvPhone;
     private RelativeLayout itemGantiPassword, btnLogout;
     private Switch         switchBiometrik, switchVerif;
 
@@ -41,7 +43,6 @@ public class ProfileActivity extends AppCompatActivity {
         setupListeners();
     }
 
-    // PENTING: Memuat ulang data setiap kali halaman profil aktif kembali
     @Override
     protected void onResume() {
         super.onResume();
@@ -52,13 +53,10 @@ public class ProfileActivity extends AppCompatActivity {
     private void initViews() {
         btnBack           = findViewById(R.id.btnBack);
         btnEdit           = findViewById(R.id.btnEdit);
-        tvLihatSemua      = findViewById(R.id.tvLihatSemua);
         itemGantiPassword = findViewById(R.id.itemGantiPassword);
         btnLogout         = findViewById(R.id.btnLogout);
         switchBiometrik   = findViewById(R.id.switchBiometrik);
         switchVerif       = findViewById(R.id.switchVerif);
-
-        // Tambahkan inisialisasi komponen teks profil Anda
         tvUsername        = findViewById(R.id.tvUsername);
         tvPhone           = findViewById(R.id.tvPhone);
     }
@@ -66,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
     // Fungsi membaca data tersimpan
     private void loadProfileData() {
         SharedPreferences sharedPref = getSharedPreferences("USER_DATA", Context.MODE_PRIVATE);
-        String username = sharedPref.getString("username", "AAAAAAA"); // "AAAAAAA" adalah nilai default awal
+        String username = sharedPref.getString("username", "AAAAAAA");
         String phone = sharedPref.getString("phone", "+62 888-8888-8888");
 
         if (tvUsername != null) tvUsername.setText(username);
@@ -81,13 +79,6 @@ public class ProfileActivity extends AppCompatActivity {
         btnEdit.setOnClickListener(v -> {
             Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
             startActivity(intent);
-        });
-
-        tvLihatSemua.setOnClickListener(v -> {
-            Intent intent = new Intent(ProfileActivity.this, HomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
         });
 
         itemGantiPassword.setOnClickListener(v -> {

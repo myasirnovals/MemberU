@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardBackgroundColor="@android:color/white"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="16dp"
     app:cardElevation="2dp">
 
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nama Merchant"
-                    android:textColor="#1F2937"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="ID: 000000"
-                    android:textColor="#9CA3AF"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:text=">"
-                android:textColor="#D1D5DB"
+                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>

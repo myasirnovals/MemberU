@@ -3,38 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F4F8"
+    android:background="?android:attr/colorBackground"
     android:orientation="vertical">
 
-    <!-- Toolbar -->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#6B4EFF"
-        android:paddingHorizontal="16dp">
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:elevation="4dp"
+        android:background="?attr/colorPrimary">
 
-        <TextView
+        <ImageView
             android:id="@+id/btnBackEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="?attr/homeAsUpIndicator"
+            app:tint="?attr/colorOnPrimary"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="6dp"
-            android:text="←"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp" />
+            android:clickable="true"
+            android:focusable="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
             android:text="Edit Profil"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnPrimary"/>
+    </LinearLayout>
 
-    <!-- Form Input -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama Lengkap"
-            android:textColor="#1A1A1A"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -55,17 +55,19 @@
             android:layout_height="48dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="16dp"
-            android:background="@android:drawable/edit_text"
+            android:background="?attr/colorSurfaceVariant"
             android:hint="Masukkan nama baru"
             android:inputType="textPersonName"
             android:paddingHorizontal="12dp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nomor Telepon"
-            android:textColor="#1A1A1A"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -75,20 +77,22 @@
             android:layout_height="48dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="24dp"
-            android:background="@android:drawable/edit_text"
+            android:background="?attr/colorSurfaceVariant"
             android:hint="Masukkan nomor telepon baru"
             android:inputType="phone"
             android:paddingHorizontal="12dp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:textSize="14sp" />
 
         <Button
             android:id="@+id/btnSimpanProfil"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:backgroundTint="#6B4EFF"
+            app:backgroundTint="?attr/colorPrimary"
             android:text="Simpan Perubahan"
             android:textAllCaps="false"
-            android:textColor="#FFFFFF"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>

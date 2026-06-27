@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="?android:attr/colorBackground"
     android:clipChildren="false"
     android:clipToPadding="false"
     tools:context=".views.HomeActivity">
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@android:color/white"
+        android:background="?attr/colorSurface"
         android:elevation="2dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -24,7 +24,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            app:cardBackgroundColor="#6444f3"
+            app:cardBackgroundColor="?attr/colorPrimary"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
 
@@ -33,7 +33,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="mU"
-                android:textColor="@android:color/white"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
@@ -46,15 +46,16 @@
             android:layout_marginEnd="12dp"
             android:layout_weight="1"
             android:background="@drawable/bg_search_rounded"
+            android:backgroundTint="?attr/colorSurfaceVariant"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="8dp"
-            android:drawableTint="#afb6c5"
+            android:drawableTint="?attr/colorOnSurfaceVariant"
             android:hint="Cari member..."
             android:inputType="text"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:textColor="#afb6c5"
-            android:textColorHint="#afb6c5"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
             android:textSize="14sp" />
 
         <androidx.cardview.widget.CardView
@@ -64,7 +65,7 @@
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            app:cardBackgroundColor="@android:color/darker_gray"
+            app:cardBackgroundColor="?attr/colorSurfaceVariant"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
 
@@ -73,7 +74,8 @@
                 android:layout_height="match_parent"
                 android:padding="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_user" />
+                android:src="@drawable/ic_user"
+                app:tint="?attr/colorOnSurfaceVariant"/>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
@@ -82,8 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"
-        android:layout_below="@id/header_container"
-        android:background="#f1f4fb">
+        android:layout_below="@id/header_container">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -179,40 +180,40 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:backgroundTint="#4361ee"
+                        app:backgroundTint="?attr/colorPrimary"
                         android:text="Semua"
                         android:textAllCaps="false"
-                        android:textColor="@android:color/white" />
+                        android:textColor="?attr/colorOnPrimary" />
 
                     <Button
                         android:id="@+id/btn_cat_gym"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:backgroundTint="@android:color/white"
+                        app:backgroundTint="?attr/colorSurface"
                         android:text="Gym"
                         android:textAllCaps="false"
-                        android:textColor="#333333" />
+                        android:textColor="?attr/colorOnSurface" />
 
                     <Button
                         android:id="@+id/btn_cat_barbershop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:backgroundTint="@android:color/white"
+                        app:backgroundTint="?attr/colorSurface"
                         android:text="Barbershop"
                         android:textAllCaps="false"
-                        android:textColor="#333333" />
+                        android:textColor="?attr/colorOnSurface" />
 
                     <Button
                         android:id="@+id/btn_cat_laundry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:backgroundTint="@android:color/white"
+                        app:backgroundTint="?attr/colorSurface"
                         android:text="Laundry"
                         android:textAllCaps="false"
-                        android:textColor="#333333" />
+                        android:textColor="?attr/colorOnSurface" />
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -223,6 +224,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/bg_button_dashed"
+                android:backgroundTint="?attr/colorSurfaceVariant"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?android:attr/selectableItemBackground"
@@ -235,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="12dp"
                     android:text="+"
-                    android:textColor="#4361ee"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="24sp" />
 
                 <TextView
@@ -243,7 +245,7 @@
                     android:layout_height="wrap_content"
                     android:text="Tambah Member Baru"
                     android:textAllCaps="false"
-                    android:textColor="#4361ee"
+                    android:textColor="?attr/colorPrimary"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -264,12 +266,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
+        android:background="?attr/colorSurface"
         android:fitsSystemWindows="true"
         app:backgroundTint="@null"
-        app:elevation="0dp"
-        app:itemIconTint="#000000"
-        app:itemTextColor="#000000"
+        app:elevation="8dp"
+        app:itemIconTint="?attr/colorOnSurfaceVariant"
+        app:itemTextColor="?attr/colorOnSurfaceVariant"
         app:menu="@menu/bottom_nav_menu" />
 
     <RelativeLayout
@@ -278,8 +280,7 @@
         android:layout_height="72dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="55dp"
-        android:elevation="12dp"
+        android:layout_marginBottom="75dp" android:elevation="12dp"
         android:translationZ="12dp">
 
         <FrameLayout
@@ -295,7 +296,7 @@
                 android:layout_height="34dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_qr_code"
-                app:tint="@android:color/white" />
+                app:tint="?attr/colorOnPrimary" />
         </FrameLayout>
     </RelativeLayout>
 

@@ -9,23 +9,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import com.google.android.material.appbar.MaterialToolbar;
-
 
 import org.butterflygroup.memberu.R;
 import org.butterflygroup.memberu.models.MemberCard;
 import org.butterflygroup.memberu.utils.DatabaseHelper;
-
-import java.io.ByteArrayOutputStream;
 
 public class DetailCardActivity extends AppCompatActivity {
 
@@ -38,7 +32,6 @@ public class DetailCardActivity extends AppCompatActivity {
 
     private ImageButton btnSync;
 
-
     private TextView tvMemberName;
     private TextView tvMemberTier;
     private TextView tvMemberNumber;
@@ -50,8 +43,8 @@ public class DetailCardActivity extends AppCompatActivity {
 
     private Button btnQrTab;
     private Button btnBarcodeTab;
+    private Button btnDelete; // Tombol Hapus
     private View llCodeToggle;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +68,10 @@ public class DetailCardActivity extends AppCompatActivity {
 
         btnSync = findViewById(R.id.btnSync);
 
+        // Inisialisasi tombol hapus (Pastikan ID di XML adalah btnDelete atau sesuaikan)
+        btnDelete = findViewById(R.id.btnDeleteMember);
 
         setupCodeToggle();
-
 
         toolbar.setNavigationOnClickListener(v -> {
             // kembali ke HomeActivity dan pastikan detail masuk onDestroy
@@ -109,12 +103,37 @@ public class DetailCardActivity extends AppCompatActivity {
             }
         });
 
+        // Setup klik listener untuk tombol hapus
+        if (btnDelete != null) {
+            btnDelete.setOnClickListener(v -> showDeleteConfirmationDialog());
+        }
 
         // ganti toolbar title agar lebih sesuai
-
         if (tvMemberName.getText() != null && !tvMemberName.getText().toString().trim().isEmpty()) {
             toolbar.setTitle(tvMemberName.getText().toString().trim());
         }
+    }
+
+    private void showDeleteConfirmationDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Hapus Member")
+                .setMessage("Apakah Anda yakin ingin menghapus kartu member ini? Data tidak dapat dikembalikan.")
+                .setPositiveButton("Hapus", (dialog, which) -> {
+                    // Lakukan proses hapus di DatabaseHelper
+                    boolean isDeleted = dbHelper.deleteMemberCard(memberCardId);
+
+                    if (isDeleted) {
+                        Toast.makeText(DetailCardActivity.this, "Kartu berhasil dihapus", Toast.LENGTH_SHORT).show();
+                        // Menutup halaman detail dan kembali ke Home
+                        safeCloseCursor();
+                        finish();
+                        overridePendingTransition(R.anim.anim_click, R.anim.anim_click);
+                    } else {
+                        Toast.makeText(DetailCardActivity.this, "Gagal menghapus kartu", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Batal", (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     private void setupCodeToggle() {
@@ -173,12 +192,6 @@ public class DetailCardActivity extends AppCompatActivity {
         // style non-aktif (tab Barcode)
         btnBarcodeTab.setBackgroundResource(R.drawable.bg_barcode_tab_inactive);
         btnBarcodeTab.setTextColor(ContextCompat.getColor(this, R.color.text_secondary));
-
-        // pastikan QR tetap aktif secara konsisten
-        btnQrTab.setBackgroundResource(R.drawable.bg_qr_tab_active);
-        btnQrTab.setTextColor(ContextCompat.getColor(this, R.color.on_secondary_container));
-
-
     }
 
     private int getColorCompat(int colorResId) {
@@ -192,7 +205,6 @@ public class DetailCardActivity extends AppCompatActivity {
         // style aktif (tab Barcode berwarna)
         btnBarcodeTab.setBackgroundResource(R.drawable.bg_barcode_tab_active);
         btnBarcodeTab.setTextColor(ContextCompat.getColor(this, R.color.on_tertiary_container));
-
 
         // style non-aktif (tab QR)
         btnQrTab.setBackgroundResource(R.drawable.bg_qr_tab_inactive);
@@ -236,9 +248,6 @@ public class DetailCardActivity extends AppCompatActivity {
         tvMemberNumber.setText("ID: " + card.getMemberNumber());
         tvMemberExpiry.setText("Exp: " + expiry);
         tvMemberNotes.setText(notes);
-
-        // belum ada generate QR/barcode. Biarkan placeholder seperti di XML.
-        // Jika nanti ada generate QR, lakukan di sini.
     }
 
     private void safeCloseCursor() {
@@ -261,4 +270,3 @@ public class DetailCardActivity extends AppCompatActivity {
         super.onDestroy();
     }
 }
-

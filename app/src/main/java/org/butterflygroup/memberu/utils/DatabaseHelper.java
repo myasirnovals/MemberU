@@ -121,4 +121,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "WHERE m.id = ?";
         return db.rawQuery(query, new String[]{String.valueOf(memberCardId)});
     }
+
+    public boolean deleteMemberCard(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rowsDeleted = db.delete(TABLE_MEMBER_CARDS, "id = ?", new String[]{String.valueOf(id)});
+        return rowsDeleted > 0;
+    }
 }

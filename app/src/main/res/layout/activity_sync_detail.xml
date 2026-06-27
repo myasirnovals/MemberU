@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
+    android:background="?android:attr/colorBackground"
     android:padding="24dp">
 
     <ProgressBar
         android:id="@+id/progressBarSync"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:indeterminate="true"
-        style="?android:attr/progressBarStyleLarge"
         app:layout_constraintBottom_toTopOf="@id/tvSyncLoadingText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,16 +21,15 @@
         android:id="@+id/tvSyncLoadingText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/sync_detail_loading_text"
         android:textAlignment="center"
-        android:textColor="@color/text_primary"
+        android:textColor="?android:attr/textColorPrimary"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/progressBarSync"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/progressBarSync" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

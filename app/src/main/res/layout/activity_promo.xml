@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F4FB"
+    android:background="?android:attr/colorBackground"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@android:color/white"
+        android:background="?attr/colorSurface"
         android:elevation="4dp"
         android:paddingHorizontal="16dp">
 
@@ -22,14 +22,14 @@
             android:focusable="true"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             android:src="@android:drawable/ic_menu_revert"
-            app:tint="#333333" />
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Detail Promo Resmi"
-            android:textColor="#333333"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Syarat &amp; Ketentuan Penggunaan"
-                android:textColor="#333333"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -108,13 +108,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/white"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -122,21 +122,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Selamat bergabung di MemberU! Promo ini dikhususkan bagi pengguna baru aplikasi untuk mempermudah pendaftaran keanggotaan fisik perdana Anda pada merchant mitra pilihan."
-                        android:textColor="#555555"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:textSize="14sp"
                         android:lineSpacingMultiplier="1.2" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#EAEAEA"
+                        android:background="?attr/colorOutlineVariant"
                         android:layout_marginVertical="12dp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="1. Diskon potongan harga 30% berlaku murni untuk registrasi bulan pertama.\n\n2. Berlaku universal pada seluruh sub-kategori merchant terdaftar (Gym, Barbershop, Laundry).\n\n3. Pengguna wajib menyalin kode voucher unik di bawah ini dan menunjukkannya kepada petugas outlet kasir saat transaksi klaim fisik berlangsung."
-                        android:textColor="#666666"
+                        android:textColor="?android:attr/textColorSecondary"
                         android:textSize="13sp"
                         android:lineSpacingMultiplier="1.2" />
                 </LinearLayout>
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Salin Kode Voucher"
-                android:textColor="#333333"
+                android:textColor="?android:attr/textColorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -155,13 +155,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="16dp">
@@ -172,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="MEMBERU30NEW"
-                        android:textColor="#4361EE"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:letterSpacing="0.05"/>
@@ -181,10 +181,10 @@
                         android:id="@+id/btn_copy_code"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:backgroundTint="#4361EE"
+                        app:backgroundTint="?attr/colorPrimary"
                         android:text="Salin"
                         android:textAllCaps="false"
-                        android:textColor="@android:color/white"
+                        android:textColor="?attr/colorOnPrimary"
                         android:textSize="12sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?android:attr/colorBackground">
+    android:background="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:gravity="center_vertical"
         android:paddingHorizontal="16dp"
         android:elevation="4dp"
-        android:background="?android:attr/colorBackground">
+        android:background="?attr/colorSurface">
 
         <ImageView
             android:id="@+id/btn_back"
@@ -39,7 +39,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+        android:background="?attr/colorOutlineVariant" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,7 +77,7 @@
             android:overScrollMode="always"
             android:scrollbarStyle="insideOverlay"
             android:scrollbars="vertical"
-            android:background="@android:drawable/editbox_background_normal"/>
+            android:background="?attr/colorSurfaceVariant"/>
 
         <Button
             android:id="@+id/btn_submit_feedback"
@@ -85,7 +85,8 @@
             android:layout_height="wrap_content"
             android:text="Kirim Feedback"
             android:layout_marginTop="24dp"
-            android:textColor="@android:color/white"
+            app:backgroundTint="?attr/colorPrimary"
+            android:textColor="?attr/colorOnPrimary"
             android:textStyle="bold"/>
     </LinearLayout>
 

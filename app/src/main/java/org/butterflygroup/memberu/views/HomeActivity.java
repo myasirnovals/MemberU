@@ -3,10 +3,10 @@ package org.butterflygroup.memberu.views;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.TypedValue; // Import ditambahkan untuk membaca nilai tema
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -85,6 +85,7 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         super.onResume();
         loadDataFromDatabase();
 
+        // Pastikan tab "Cards/Home" selalu terlihat aktif saat kembali ke halaman ini
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         if (bottomNav != null) {
             bottomNav.getMenu().findItem(R.id.nav_cards).setChecked(true);
@@ -119,12 +120,17 @@ public class HomeActivity extends AppCompatActivity implements MainView {
             btnTambah.setOnClickListener(v -> startActivity(new Intent(this, AddMemberActivity.class)));
         }
 
+        // ── MODIFIKASI PROFIL: Menghilangkan kilatan layar ──
         View btnProfile = findViewById(R.id.btn_profile);
         if (btnProfile != null) {
-            btnProfile.setOnClickListener(v -> startActivity(new Intent(this, ProfileActivity.class)));
+            btnProfile.setOnClickListener(v -> {
+                Intent intent = new Intent(this, ProfileActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION); // Paksa tanpa animasi
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            });
         }
 
-        // MODIFIKASI: Tombol Lihat Promo sekarang membuka PromoActivity
         View btnLihatPromo = findViewById(R.id.btn_lihat_promo);
         if (btnLihatPromo != null) {
             btnLihatPromo.setOnClickListener(v -> startActivity(new Intent(this, PromoActivity.class)));
@@ -135,15 +141,19 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
         if (bottomNav != null) {
-            bottomNav.setSelectedItemId(R.id.nav_cards);
+            bottomNav.getMenu().findItem(R.id.nav_cards).setChecked(true);
 
             bottomNav.setOnItemSelectedListener(item -> {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_settings) {
+                    // ── MODIFIKASI PENGATURAN: Menghilangkan animasi lompatan ikon & layar ──
                     Intent intent = new Intent(HomeActivity.this, SettingActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION); // Matikan animasi inten
                     startActivity(intent);
-                    overridePendingTransition(0, 0);
+                    overridePendingTransition(0, 0); // Matikan animasi transisi
+
+                    // Kembalikan false agar item di menu bawah tidak ter-highlight (tidak lompat membesar)
                     return false;
                 }
 
@@ -188,18 +198,34 @@ public class HomeActivity extends AppCompatActivity implements MainView {
         updateCategoryUI();
     }
 
+    // ── MODIFIKASI: Tombol kategori sekarang otomatis ikut redup di Mode Gelap ──
     private void updateCategoryUI() {
+        // colorPrimary adalah bawaan dari library appcompat resmi
+        int colorPrimary = getThemeColor(androidx.appcompat.R.attr.colorPrimary);
+
+        // Sisanya adalah bawaan dari library Material Design resmi
+        int colorOnPrimary = getThemeColor(com.google.android.material.R.attr.colorOnPrimary);
+        int colorSurfaceVariant = getThemeColor(com.google.android.material.R.attr.colorSurfaceVariant);
+        int colorOnSurface = getThemeColor(com.google.android.material.R.attr.colorOnSurface);
+
         for (Button btn : categoryButtons) {
             if (btn.getText().toString().equalsIgnoreCase(activeCategory)) {
-                // Aktif (Biru)
-                btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4361ee")));
-                btn.setTextColor(Color.WHITE);
+                // Tombol yang sedang dipilih (Aktif)
+                btn.setBackgroundTintList(ColorStateList.valueOf(colorPrimary));
+                btn.setTextColor(colorOnPrimary);
             } else {
-                // Tidak Aktif (Putih)
-                btn.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
-                btn.setTextColor(Color.parseColor("#333333"));
+                // Tombol yang tidak dipilih (Redup mengikuti background tema)
+                btn.setBackgroundTintList(ColorStateList.valueOf(colorSurfaceVariant));
+                btn.setTextColor(colorOnSurface);
             }
         }
+    }
+
+    // Fungsi pembantu untuk mengambil nilai warna hex dari atribut tema (?attr/...)
+    private int getThemeColor(int attrResId) {
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(attrResId, typedValue, true);
+        return typedValue.data;
     }
 
     private void bukaKameraScanner() {
