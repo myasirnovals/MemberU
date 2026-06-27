@@ -73,15 +73,41 @@
                     android:orientation="vertical"
                     android:paddingTop="4dp">
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/btnUbahFoto"
                         android:layout_width="74dp"
                         android:layout_height="74dp"
-                        android:background="@drawable/shape_circle_avatar"
-                        android:gravity="center"
-                        android:text="A"
-                        android:textColor="?attr/colorPrimary"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="37dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="?attr/colorSurfaceVariant">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tvInisialFoto"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/shape_circle_avatar"
+                                android:gravity="center"
+                                android:text="A"
+                                android:textColor="?attr/colorPrimary"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/ivProfileFoto"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:visibility="gone" />
+
+                        </FrameLayout>
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:id="@+id/tvUsername"
